@@ -1,0 +1,221 @@
+@charset "UTF-8";
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+@font-face {
+  font-family: “ProximaNova-Bold”;
+  src: url("../Fonts/FontsFree-Net-Proxima-Nova-Bold.otf");
+}
+
+@font-face {
+  font-family: “ProximaNova-Regular”;
+  src: url("../Fonts/FontsFree-Net-proxima_nova_reg-webfont.ttf");
+}
+
+.navigation-bar {
+  background: url("../assets/logo-mobile.svg") no-repeat 5.86667vw 7.73333vw;
+  background-size: 13.01333vw 13.01333vw;
+  position: relative;
+  height: 25.33333vw;
+  border-top: 1.33333vw solid #572EE5;
+}
+
+.navigation-bar__checkbox-menu {
+  position: absolute;
+  margin: 0;
+  left: 88.26667vw;
+  top: 11.73333vw;
+  width: 5.86667vw;
+  height: 4.8vw;
+  cursor: pointer;
+  -webkit-transform-origin: 0px 0px;
+          transform-origin: 0px 0px;
+  z-index: 2;
+  opacity: 0;
+}
+
+.navigation-bar__menu-line {
+  display: block;
+  position: relative;
+  left: 89.06667vw;
+  top: 12.53333vw;
+  width: 4vw;
+  height: 0.53333vw;
+  margin-bottom: 1.06667vw;
+  background: #572EE5;
+  z-index: 1;
+  -webkit-transform-origin: 0% 0%;
+          transform-origin: 0% 0%;
+  -webkit-transition: background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease, -webkit-transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+  transition: background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease, -webkit-transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease, -webkit-transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+}
+
+.navigation-bar__menu {
+  position: absolute;
+  top: 25.33333vw;
+  width: 100vw;
+  height: calc(100vh - 95px);
+  list-style: none;
+  background-color: #572EE5E6;
+  -webkit-transform-origin: 100% 0%;
+          transform-origin: 100% 0%;
+  -webkit-transform: rotateY(90deg);
+          transform: rotateY(90deg);
+  -webkit-transition: all 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+  transition: all 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-top: 30px;
+}
+
+.menu-item {
+  display: block;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  margin-bottom: 25px;
+  color: #FFFFFF;
+  font-family: “ProximaNova-Bold”;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.menu-item::after {
+  content: '';
+  position: absolute;
+  width: 41px;
+  opacity: 50%;
+  margin-top: 43px;
+  margin-bottom: 11.9px;
+  left: calc(50% - 20.5px);
+  border-bottom: 0.1px solid white;
+}
+
+.navigation-bar__checkbox-menu:checked ~ .navigation-bar__menu {
+  -webkit-transform: none;
+          transform: none;
+}
+
+.navigation-bar__checkbox-menu:checked ~ .navigation-bar__menu-line:nth-child(2) {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.navigation-bar__checkbox-menu:checked ~ .navigation-bar__menu-line:nth-child(3) {
+  opacity: 0;
+  -webkit-transform: rotate(0deg) scale(0.2, 0.2);
+          transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+.navigation-bar__checkbox-menu:checked ~ .navigation-bar__menu-line:nth-child(4) {
+  -webkit-transform: rotate(-45deg) translate(0.13333vw, -0.4vw);
+          transform: rotate(-45deg) translate(0.13333vw, -0.4vw);
+}
+
+.searcher__title {
+  margin: 2px 11.73333vw 27px 12vw;
+  font-family: “ProximaNova-Bold”;
+  color: #572EE5;
+  font-size: 30px;
+  line-height: 36px;
+  text-align: center;
+}
+
+.searcher__title span {
+  color: #50E3C2;
+}
+
+.searcher__image {
+  margin: 0 13.6vw;
+  width: 72.8vw;
+  height: auto;
+}
+/*# sourceMappingURL=styles.css.map */

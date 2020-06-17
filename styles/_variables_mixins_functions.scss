@@ -1,0 +1,27 @@
+$purple: #572EE5;
+$white-light: #F3F5F8;
+$grey-light: #37383C;
+$grey-dark: #222326;
+$turquoise: #50E3C2;
+@mixin bold {
+    font-family: “ProximaNova-Bold”;
+}
+
+@mixin regular {
+    font-family: “ProximaNova-Regular”;
+}
+
+@mixin font($size, $line) {
+    @if unitless($size) {
+        $size: $size * 1px;
+    }
+    @if unitless($line) {
+        $line: $line * 1px;
+    }
+    font-size: $size;
+    line-height: $line;
+}
+
+@function vw($pixeles, $view_width) {
+    @return #{$pixeles/$view_width*100}vw;
+}

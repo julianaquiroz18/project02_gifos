@@ -1,0 +1,87 @@
+.navigation-bar {
+    background: url("../assets/logo-mobile.svg") no-repeat vw(22, 375) vw(29, 375);
+    background-size: vw(48.8, 375) vw(48.8, 375);
+    position: relative;
+    height: vw(95, 375);
+    border-top: vw(5, 375) solid $purple;
+}
+
+.navigation-bar__checkbox-menu {
+    position: absolute;
+    margin: 0;
+    left: vw(331, 375);
+    top: vw(44, 375);
+    width: vw(22, 375);
+    height: vw(18, 375);
+    cursor: pointer;
+    transform-origin: 0px 0px;
+    z-index: 2;
+    opacity: 0;
+}
+
+.navigation-bar__menu-line {
+    display: block;
+    position: relative;
+    left: vw(334, 375);
+    top: vw(47, 375);
+    width: vw(15, 375);
+    height: vw(2, 375);
+    margin-bottom: vw(4, 375);
+    background: $purple;
+    z-index: 1;
+    transform-origin: 0% 0%;
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), opacity 0.55s ease;
+}
+
+.navigation-bar__menu {
+    position: absolute;
+    top: vw(95, 375);
+    width: 100vw;
+    height: calc(100vh - 95px);
+    list-style: none;
+    background-color: $purple+E6;
+    transform-origin: 100% 0%;
+    transform: rotateY(90deg);
+    transition: all 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+    box-sizing: border-box;
+    padding-top: 30px;
+}
+
+.menu-item {
+    display: block;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    margin-bottom: 25px;
+    color: #FFFFFF;
+    @include bold;
+    @include font(20,
+    30);
+    &::after {
+        content: '';
+        position: absolute;
+        width: 41px;
+        opacity: 50%;
+        margin-top: 43px;
+        margin-bottom: 11.9px;
+        left: calc(50% - 20.5px);
+        border-bottom: 0.1px solid white;
+    }
+}
+
+.navigation-bar__checkbox-menu:checked~.navigation-bar__menu {
+    transform: none;
+}
+
+.navigation-bar__checkbox-menu:checked~.navigation-bar__menu-line:nth-child(2) {
+    transform: rotate(45deg);
+}
+
+.navigation-bar__checkbox-menu:checked~.navigation-bar__menu-line:nth-child(3) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+.navigation-bar__checkbox-menu:checked~.navigation-bar__menu-line:nth-child(4) {
+    transform: rotate(-45deg) translate(vw(0.5, 375), vw(-1.5, 375));
+}

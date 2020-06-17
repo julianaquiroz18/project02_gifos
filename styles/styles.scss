@@ -1,0 +1,16 @@
+@import './reset';
+@font-face {
+    font-family: “ProximaNova-Bold”;
+    src: url('../Fonts/FontsFree-Net-Proxima-Nova-Bold.otf');
+}
+
+@font-face {
+    font-family: “ProximaNova-Regular”;
+    src: url('../Fonts/FontsFree-Net-proxima_nova_reg-webfont.ttf');
+}
+
+@import './variables_mixins_functions';
+@import './general.scss';
+@import './navigation-bar';
+@import './searcher';
+@import './footer';

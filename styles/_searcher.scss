@@ -1,0 +1,16 @@
+.searcher__title {
+    margin: 2px vw(44, 375) 27px vw(45, 375);
+    @include bold;
+    color: $purple;
+    @include font(30, 36);
+    text-align: center;
+    & span {
+        color: $turquoise;
+    }
+}
+
+.searcher__image {
+    margin: 0 vw(51, 375);
+    width: vw(273, 375);
+    height: auto;
+}
