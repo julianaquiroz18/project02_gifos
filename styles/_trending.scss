@@ -1,0 +1,38 @@
+.trending-def {
+    @include font(18, 25);
+    width: 236px;
+    margin: 30px vw(69, 375) 48px vw(70, 375);
+    text-align: center;
+    & span {
+        @include bold;
+        &::after {
+            content: '\A';
+            white-space: pre;
+        }
+    }
+}
+
+.trending-box {
+    background-color: $white-light;
+    height: 430px;
+    text-align: center;
+    &__title {
+        @include font(25, 30);
+        @include bold;
+        padding: 44px 0 9px;
+    }
+    &__info {
+        color: black;
+        @include font(16, 23);
+        margin: 0 21px;
+        & span::after {
+            content: '\A';
+            white-space: pre;
+        }
+    }
+}
+
+.gifos-carrousel {
+    height: 187px;
+    margin: 32px 0 82px;
+}

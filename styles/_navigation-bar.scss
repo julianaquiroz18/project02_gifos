@@ -83,5 +83,5 @@
 }
 
 .navigation-bar__checkbox-menu:checked~.navigation-bar__menu-line:nth-child(4) {
-    transform: rotate(-45deg) translate(vw(0.5, 375), vw(-1.5, 375));
+    transform: rotate(-45deg) translate(0.75px, -1.5px);
 }

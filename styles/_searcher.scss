@@ -1,4 +1,4 @@
-.searcher__title {
+.gifos-searcher__title {
     margin: 2px vw(44, 375) 27px vw(45, 375);
     @include bold;
     color: $purple;
@@ -9,8 +9,36 @@
     }
 }
 
-.searcher__image {
+.gifos-searcher__image {
     margin: 0 vw(51, 375);
     width: vw(273, 375);
     height: auto;
+}
+
+.search-bar {
+    width: vw(334, 375);
+    height: 50px;
+    border: $purple solid 1px;
+    border-radius: 27px;
+    margin: 0 vw(21, 375) 0 vw(20, 375);
+    position: relative;
+    &__input {
+        position: absolute;
+        left: vw(55, 375);
+        top: 15px;
+        width: 215px;
+        height: 22px;
+        border: 0;
+        padding: 0;
+        margin: 0px;
+        @include font(16, 22);
+        @include regular;
+    }
+    &__icon {
+        position: absolute;
+        top: 15px;
+        left: vw(294, 375);
+        width: 20px;
+        height: 20px;
+    }
 }
