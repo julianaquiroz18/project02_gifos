@@ -98,6 +98,11 @@ video {
   src: url("../Fonts/FontsFree-Net-proxima_nova_reg-webfont.ttf");
 }
 
+@font-face {
+  font-family: “Roboto-Black“;
+  src: url("../Fonts/Roboto-Black.ttf");
+}
+
 :root {
   font-family: “ProximaNova-Regular”;
   color: #572EE5;
@@ -111,8 +116,8 @@ video {
 }
 
 .navigation-bar {
-  background: url("../assets/logo-mobile.svg") no-repeat 5.86667vw 7.73333vw;
-  background-size: 13.01333vw 13.01333vw;
+  background: url("../assets/logo-mobile.png") no-repeat 5.86667vw 7.73333vw;
+  background-size: 13.04vw auto;
   position: relative;
   height: 25.33333vw;
   border-top: 1.33333vw solid #572EE5;
@@ -212,8 +217,18 @@ video {
           transform: rotate(-45deg) translate(0.75px, -1.5px);
 }
 
+.gifos-searcher {
+  position: relative;
+}
+
 .gifos-searcher__title {
-  margin: 2px 11.73333vw 27px 12vw;
+  margin: 2px 0 27px;
+  width: 76.26667vw;
+  max-width: 467px;
+  position: relative;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   font-family: “ProximaNova-Bold”;
   color: #572EE5;
   font-size: 30px;
@@ -226,47 +241,71 @@ video {
 }
 
 .gifos-searcher__image {
-  margin: 0 13.6vw;
+  display: block;
+  position: relative;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   width: 72.8vw;
+  max-width: 399px;
   height: auto;
 }
 
 .search-bar {
   width: 89.06667vw;
+  max-width: 551px;
   height: 50px;
   border: #572EE5 solid 1px;
   border-radius: 27px;
-  margin: 0 5.6vw 0 5.33333vw;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   position: relative;
 }
 
 .search-bar__input {
   position: absolute;
-  left: 14.66667vw;
+  left: 55px;
   top: 15px;
   width: 215px;
-  height: 22px;
   border: 0;
   padding: 0;
   margin: 0px;
   font-size: 16px;
-  line-height: 22px;
+  line-height: 20px;
   font-family: “ProximaNova-Regular”;
 }
 
 .search-bar__icon {
   position: absolute;
   top: 15px;
-  left: 78.4vw;
-  width: 20px;
-  height: 20px;
+  right: 20px;
+  font-size: 20px;
+}
+
+@media screen and (min-width: 1024px) {
+  .gifos-searcher__title {
+    margin: 75px 0 25px;
+    font-size: 40px;
+    line-height: 50px;
+    max-width: 600px;
+  }
+}
+
+.trending {
+  position: relative;
 }
 
 .trending-def {
   font-size: 18px;
   line-height: 25px;
-  width: 236px;
-  margin: 30px 18.4vw 48px 18.66667vw;
+  margin: 30px 0 48px;
+  width: 56vw;
+  min-width: 210px;
+  position: relative;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   text-align: center;
 }
 
@@ -281,7 +320,6 @@ video {
 
 .trending-box {
   background-color: #F3F5F8;
-  height: 430px;
   text-align: center;
 }
 
@@ -296,7 +334,6 @@ video {
   color: black;
   font-size: 16px;
   line-height: 23px;
-  margin: 0 21px;
 }
 
 .trending-box__info span::after {
@@ -306,11 +343,35 @@ video {
 
 .gifos-carrousel {
   height: 187px;
-  margin: 32px 0 82px;
+  padding: 32px 0 82px;
+}
+
+@media screen and (min-width: 768px) {
+  .trending-box__info span::after {
+    white-space: normal;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .trending-def {
+    margin: 73px 0 102px;
+  }
+  .trending-box__title {
+    font-size: 30px;
+    line-height: 30px;
+    padding: 65px 0 14px;
+  }
+  .trending-box__info {
+    font-size: 18px;
+    line-height: 22px;
+  }
+  .gifos-carrousel {
+    height: 275px;
+    padding: 52px 0 182px;
+  }
 }
 
 .footer {
-  height: 196px;
   border-bottom: 5px #572EE5 solid;
   color: black;
   display: -webkit-box;
@@ -328,16 +389,23 @@ video {
 .share {
   font-size: 15px;
   line-height: 18px;
-  margin: 47px 0 24px;
+  margin: 47px 0 22px;
 }
 
 .social-media-icons {
-  height: 20px;
+  width: 22.77867vw;
+  font-size: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .copy-rights {
   font-size: 14px;
   line-height: 20px;
-  margin-top: 46px;
+  margin: 46px 0 23px;
 }
 /*# sourceMappingURL=styles.css.map */

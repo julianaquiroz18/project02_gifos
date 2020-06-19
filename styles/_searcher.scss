@@ -1,5 +1,14 @@
+.gifos-searcher {
+    position: relative;
+}
+
 .gifos-searcher__title {
-    margin: 2px vw(44, 375) 27px vw(45, 375);
+    margin: 2px 0 27px;
+    width: vw(286, 375);
+    max-width: 467px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
     @include bold;
     color: $purple;
     @include font(30, 36);
@@ -10,35 +19,47 @@
 }
 
 .gifos-searcher__image {
-    margin: 0 vw(51, 375);
+    display: block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
     width: vw(273, 375);
+    max-width: 399px;
     height: auto;
 }
 
 .search-bar {
     width: vw(334, 375);
+    max-width: 551px;
     height: 50px;
     border: $purple solid 1px;
     border-radius: 27px;
-    margin: 0 vw(21, 375) 0 vw(20, 375);
+    left: 50%;
+    transform: translateX(-50%);
     position: relative;
     &__input {
         position: absolute;
-        left: vw(55, 375);
+        left: 55px;
         top: 15px;
         width: 215px;
-        height: 22px;
         border: 0;
         padding: 0;
         margin: 0px;
-        @include font(16, 22);
+        @include font(16, 20);
         @include regular;
     }
     &__icon {
         position: absolute;
         top: 15px;
-        left: vw(294, 375);
-        width: 20px;
-        height: 20px;
+        right: 20px;
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .gifos-searcher__title {
+        margin: 75px 0 25px;
+        @include font(40, 50);
+        max-width: 600px;
     }
 }

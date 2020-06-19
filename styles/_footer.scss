@@ -1,5 +1,5 @@
 .footer {
-    height: 196px;
+    // height: 196px;
     border-bottom: 5px $purple solid;
     color: black;
     display: flex;
@@ -9,14 +9,17 @@
 
 .share {
     @include font(15, 18);
-    margin: 47px 0 24px;
+    margin: 47px 0 22px;
 }
 
 .social-media-icons {
-    height: 20px;
+    width: vw(85.42, 375);
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .copy-rights {
     @include font(14, 20);
-    margin-top: 46px;
+    margin: 46px 0 23px;
 }

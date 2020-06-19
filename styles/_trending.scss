@@ -1,7 +1,15 @@
+.trending {
+    position: relative;
+}
+
 .trending-def {
     @include font(18, 25);
-    width: 236px;
-    margin: 30px vw(69, 375) 48px vw(70, 375);
+    margin: 30px 0 48px;
+    width: vw(210, 375);
+    min-width: 210px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
     & span {
         @include bold;
@@ -14,7 +22,6 @@
 
 .trending-box {
     background-color: $white-light;
-    height: 430px;
     text-align: center;
     &__title {
         @include font(25, 30);
@@ -24,7 +31,6 @@
     &__info {
         color: black;
         @include font(16, 23);
-        margin: 0 21px;
         & span::after {
             content: '\A';
             white-space: pre;
@@ -34,5 +40,30 @@
 
 .gifos-carrousel {
     height: 187px;
-    margin: 32px 0 82px;
+    padding: 32px 0 82px;
+}
+
+@media screen and (min-width: 768px) {
+    .trending-box__info span::after {
+        white-space: normal;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .trending-def {
+        margin: 73px 0 102px;
+    }
+    .trending-box {
+        &__title {
+            @include font(30, 30);
+            padding: 65px 0 14px;
+        }
+        &__info {
+            @include font(18, 22);
+        }
+    }
+    .gifos-carrousel {
+        height: 275px;
+        padding: 52px 0 182px;
+    }
 }
