@@ -119,8 +119,8 @@ video {
   background: url("../assets/logo-mobile.png") no-repeat 5.86667vw 7.73333vw;
   background-size: 13.04vw auto;
   position: relative;
-  height: 25.33333vw;
-  border-top: 1.33333vw solid #572EE5;
+  height: 95px;
+  border-top: 5px solid #572EE5;
 }
 
 .navigation-bar__checkbox-menu {
@@ -171,6 +171,7 @@ video {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding-top: 30px;
+  z-index: 5;
 }
 
 .menu-item {
@@ -215,6 +216,43 @@ video {
 .navigation-bar__checkbox-menu:checked ~ .navigation-bar__menu-line:nth-child(4) {
   -webkit-transform: rotate(-45deg) translate(0.75px, -1.5px);
           transform: rotate(-45deg) translate(0.75px, -1.5px);
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    position: relative;
+  }
+  .navigation-bar {
+    background-position: 10.83333vw 18px;
+    background-size: 68px auto;
+    height: 90px;
+  }
+  .navigation-bar__checkbox-menu,
+  .navigation-bar__menu-line {
+    display: none;
+  }
+  .navigation-bar__menu {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    top: inherit;
+    height: 90px;
+    right: 18.26389vw;
+    background-color: inherit;
+    -webkit-transform: initial;
+            transform: initial;
+    padding-top: 0;
+  }
+  .menu-item {
+    font-size: 14px;
+    line-height: 17px;
+    margin: 35px 0 38px 3.125vw;
+    color: #572EE5;
+    text-transform: uppercase;
+  }
 }
 
 .gifos-searcher {
@@ -283,7 +321,7 @@ video {
   font-size: 20px;
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 768px) {
   .gifos-searcher__title {
     margin: 75px 0 25px;
     font-size: 40px;
