@@ -1,9 +1,17 @@
 .navigation-bar {
-    background: url("../assets/logo-mobile.png") no-repeat vw(22, 375) vw(29, 375);
-    background-size: vw(48.9, 375) auto;
     position: relative;
     height: 95px;
     border-top: 5px solid $purple;
+    &__logo {
+        width: vw(48.9, 375);
+        height: vw(48.9, 375);
+        position: absolute;
+        left: vw(22, 375);
+        top: vw(29, 375);
+    }
+    &__button {
+        display: none;
+    }
 }
 
 .navigation-bar__checkbox-menu {
@@ -35,7 +43,7 @@
 
 .navigation-bar__menu {
     position: absolute;
-    top: vw(95, 375);
+    top: 95px;
     width: 100vw;
     height: calc(100vh - 95px);
     list-style: none;
@@ -56,8 +64,7 @@
     margin-bottom: 25px;
     color: #FFFFFF;
     @include bold;
-    @include font(20,
-    30);
+    @include font(20, 30);
     &::after {
         content: '';
         position: absolute;
@@ -89,12 +96,33 @@
 
 @media screen and (min-width: 768px) {
     .header {
-        position: relative;
+        min-height: 90px;
     }
     .navigation-bar {
-        background-position: vw(156, 1440) 18px;
-        background-size: 68px auto;
         height: 90px;
+        min-width: 100%;
+        &__logo {
+            width: 59.1px;
+            height: 59.1px;
+            left: vw(156, 1440);
+            top: 18px;
+        }
+        &__button {
+            display: inherit;
+            width: 54px;
+            height: 54px;
+            background-color: white;
+            border: 1px solid $purple;
+            padding: 0;
+            border-radius: 50%;
+            position: absolute;
+            top: 18px;
+            left: vw(1230, 1440);
+            outline: none;
+        }
+    }
+    .icon-button-crear-gifo {
+        font-size: 16px;
     }
     .navigation-bar__checkbox-menu,
     .navigation-bar__menu-line {
@@ -111,8 +139,7 @@
         padding-top: 0;
     }
     .menu-item {
-        @include font(14,
-        17);
+        @include font(14, 17);
         margin: 35px 0 38px vw(45, 1440);
         color: $purple;
         text-transform: uppercase;

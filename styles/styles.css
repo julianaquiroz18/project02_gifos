@@ -116,11 +116,21 @@ video {
 }
 
 .navigation-bar {
-  background: url("../assets/logo-mobile.png") no-repeat 5.86667vw 7.73333vw;
-  background-size: 13.04vw auto;
   position: relative;
   height: 95px;
   border-top: 5px solid #572EE5;
+}
+
+.navigation-bar__logo {
+  width: 13.04vw;
+  height: 13.04vw;
+  position: absolute;
+  left: 5.86667vw;
+  top: 7.73333vw;
+}
+
+.navigation-bar__button {
+  display: none;
 }
 
 .navigation-bar__checkbox-menu {
@@ -157,7 +167,7 @@ video {
 
 .navigation-bar__menu {
   position: absolute;
-  top: 25.33333vw;
+  top: 95px;
   width: 100vw;
   height: calc(100vh - 95px);
   list-style: none;
@@ -220,12 +230,33 @@ video {
 
 @media screen and (min-width: 768px) {
   .header {
-    position: relative;
+    min-height: 90px;
   }
   .navigation-bar {
-    background-position: 10.83333vw 18px;
-    background-size: 68px auto;
     height: 90px;
+    min-width: 100%;
+  }
+  .navigation-bar__logo {
+    width: 59.1px;
+    height: 59.1px;
+    left: 10.83333vw;
+    top: 18px;
+  }
+  .navigation-bar__button {
+    display: inherit;
+    width: 54px;
+    height: 54px;
+    background-color: white;
+    border: 1px solid #572EE5;
+    padding: 0;
+    border-radius: 50%;
+    position: absolute;
+    top: 18px;
+    left: 85.41667vw;
+    outline: none;
+  }
+  .icon-button-crear-gifo {
+    font-size: 16px;
   }
   .navigation-bar__checkbox-menu,
   .navigation-bar__menu-line {
