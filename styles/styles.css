@@ -254,6 +254,11 @@ video {
     top: 18px;
     left: 85.41667vw;
     outline: none;
+    color: #572EE5;
+  }
+  .navigation-bar__button:hover {
+    background-color: #572EE5;
+    color: white;
   }
   .icon-button-crear-gifo {
     font-size: 16px;
@@ -470,6 +475,7 @@ video {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  color: #cdd6e0;
 }
 
 .copy-rights {
@@ -499,7 +505,9 @@ video {
     line-height: 16px;
     margin: 0 18px 0 0;
   }
-  .social-media__icons .icon-icon-twitter::before {
+  .icon-icon_facebook:hover,
+  .icon-icon-twitter:hover,
+  .icon-icon_instagram:hover {
     color: #572EE5;
   }
   .copy-rights {

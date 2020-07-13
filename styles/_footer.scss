@@ -16,6 +16,7 @@
     font-size: 20px;
     display: flex;
     justify-content: space-between;
+    color: #cdd6e0;
 }
 
 .copy-rights {
@@ -35,7 +36,11 @@
             @include font(13, 16);
             margin: 0 18px 0 0;
         }
-        &__icons .icon-icon-twitter::before {
+    }
+    .icon-icon_facebook,
+    .icon-icon-twitter,
+    .icon-icon_instagram {
+        &:hover {
             color: $purple;
         }
     }
