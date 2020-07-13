@@ -267,10 +267,10 @@
 
 .icon-button-left:before {
     content: "\e92c";
-    color: #572ee5;
+    /* color: #572ee5; */
 }
 
 .icon-button-right:before {
     content: "\e92d";
-    color: #572ee5;
+    /* color: #572ee5; */
 }

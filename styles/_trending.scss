@@ -36,6 +36,9 @@
             white-space: pre;
         }
     }
+    &__button {
+        display: none;
+    }
 }
 
 .gifos-carrousel {
@@ -54,6 +57,7 @@
         margin: 73px 0 102px;
     }
     .trending-box {
+        position: relative;
         &__title {
             @include font(30, 30);
             padding: 65px 0 14px;
@@ -61,9 +65,35 @@
         &__info {
             @include font(18, 22);
         }
+        &__button {
+            display: flex;
+            position: absolute;
+            top: 302px;
+            justify-content: center;
+            align-content: center;
+            flex-direction: column;
+            border: $purple solid 1px;
+            width: 40px;
+            height: 40px;
+            font-size: 14px;
+            color: $purple;
+            &:hover {
+                background-color: $purple;
+                color: white;
+            }
+            &-left {
+                left: vw(94, 1440);
+            }
+            &-right {
+                right: vw(92, 1440);
+            }
+        }
     }
     .gifos-carrousel {
         height: 275px;
         padding: 52px 0 182px;
+        width: vw(1127, 1440);
+        margin: auto;
+        border: black 1px solid;
     }
 }
