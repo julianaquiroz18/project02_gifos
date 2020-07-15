@@ -44,6 +44,20 @@
 .gifos-carrousel {
     height: 187px;
     padding: 32px 0 82px;
+    display: flex;
+    overflow: scroll;
+}
+
+.gifos-container-card {
+    margin-left: 22px;
+    &__img {
+        width: 243px;
+        height: 187px;
+    }
+    &__buttons,
+    &__info {
+        display: none;
+    }
 }
 
 @media screen and (min-width: 768px) {
@@ -66,17 +80,16 @@
             @include font(18, 22);
         }
         &__button {
-            display: flex;
+            display: inherit;
             position: absolute;
             top: 302px;
-            justify-content: center;
-            align-content: center;
-            flex-direction: column;
+            background-color: $white-light;
             border: $purple solid 1px;
             width: 40px;
             height: 40px;
             font-size: 14px;
             color: $purple;
+            outline: none;
             &:hover {
                 background-color: $purple;
                 color: white;
@@ -94,6 +107,64 @@
         padding: 52px 0 182px;
         width: vw(1127, 1440);
         margin: auto;
-        border: black 1px solid;
+        align-items: center;
+    }
+    .gifos-container-card {
+        position: relative;
+        margin: 0 vw(28, 1440) 0 0;
+        &__img,
+        .overlay {
+            width: vw(357, 1440);
+            height: vw(275, 1440);
+        }
+        &__buttons {
+            display: flex;
+            position: absolute;
+            width: 117px;
+            justify-content: space-between;
+            top: 10px;
+            right: 10px;
+        }
+        &__info {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            height: 63px;
+            bottom: 6px;
+            left: 12px;
+            text-align: left;
+            color: white;
+        }
+    }
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: $purple-alfa;
+        transition: all 0.3s ease-in-out;
+        z-index: -1;
+    }
+    .gifos-container-card:hover .overlay {
+        z-index: 1;
+    }
+    .card-button {
+        background-color: white;
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+        opacity: 70%;
+        font-size: 18px;
+        outline: none;
+        &:hover {
+            opacity: 100%;
+        }
+    }
+    .card__user {
+        @include font(15, 18);
+        margin-bottom: 5px;
+    }
+    .card__title {
+        @include font(16, 20);
+        @include bold;
     }
 }

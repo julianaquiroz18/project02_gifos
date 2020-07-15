@@ -79,7 +79,8 @@ summary,
 time,
 mark,
 audio,
-video {
+video,
+button {
   margin: 0;
   padding: 0;
   border: 0;
@@ -236,7 +237,6 @@ video {
     height: 54px;
     background-color: white;
     border: 1px solid #572EE5;
-    padding: 0;
     border-radius: 50%;
     position: absolute;
     top: 18px;
@@ -338,11 +338,13 @@ video {
   font-family: “ProximaNova-Regular”;
 }
 
-.search-bar__icon {
+.search-bar__button {
   position: absolute;
   top: 15px;
   right: 20px;
   font-size: 20px;
+  background-color: white;
+  outline: none;
 }
 
 @media screen and (min-width: 768px) {
@@ -410,6 +412,23 @@ video {
 .gifos-carrousel {
   height: 187px;
   padding: 32px 0 82px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: scroll;
+}
+
+.gifos-container-card {
+  margin-left: 22px;
+}
+
+.gifos-container-card__img {
+  width: 243px;
+  height: 187px;
+}
+
+.gifos-container-card__buttons, .gifos-container-card__info {
+  display: none;
 }
 
 @media screen and (min-width: 768px) {
@@ -435,25 +454,16 @@ video {
     line-height: 22px;
   }
   .trending-box__button {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
+    display: inherit;
     position: absolute;
     top: 302px;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -ms-flex-line-pack: center;
-        align-content: center;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    background-color: #F3F5F8;
     border: #572EE5 solid 1px;
     width: 40px;
     height: 40px;
     font-size: 14px;
     color: #572EE5;
+    outline: none;
   }
   .trending-box__button:hover {
     background-color: #572EE5;
@@ -470,7 +480,79 @@ video {
     padding: 52px 0 182px;
     width: 78.26389vw;
     margin: auto;
-    border: black 1px solid;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .gifos-container-card {
+    position: relative;
+    margin: 0 1.94444vw 0 0;
+  }
+  .gifos-container-card__img,
+  .gifos-container-card .overlay {
+    width: 24.79167vw;
+    height: 19.09722vw;
+  }
+  .gifos-container-card__buttons {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: absolute;
+    width: 117px;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    top: 10px;
+    right: 10px;
+  }
+  .gifos-container-card__info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    position: absolute;
+    height: 63px;
+    bottom: 6px;
+    left: 12px;
+    text-align: left;
+    color: white;
+  }
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(87, 46, 229, 0.7);
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    z-index: -1;
+  }
+  .gifos-container-card:hover .overlay {
+    z-index: 1;
+  }
+  .card-button {
+    background-color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    opacity: 70%;
+    font-size: 18px;
+    outline: none;
+  }
+  .card-button:hover {
+    opacity: 100%;
+  }
+  .card__user {
+    font-size: 15px;
+    line-height: 18px;
+    margin-bottom: 5px;
+  }
+  .card__title {
+    font-size: 16px;
+    line-height: 20px;
+    font-family: “ProximaNova-Bold”;
   }
 }
 
