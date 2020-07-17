@@ -1,6 +1,6 @@
 .gifos-wrapper {
     display: grid;
-    margin: 0 vw(21, 375) 78px;
+    margin: 0 vw(21, 375);
     column-gap: 21px;
     row-gap: 25px;
     grid-template-columns: repeat(2, 2fr);
@@ -41,7 +41,7 @@
 
 @media screen and (min-width: 1024px) {
     .gifos-wrapper {
-        margin: 0 vw(157, 1440) 78px vw(156, 1440);
+        margin: 0 vw(157, 1440) 0 vw(156, 1440);
         column-gap: 29px;
         row-gap: 30px;
         grid-template-columns: repeat(4, 4fr);

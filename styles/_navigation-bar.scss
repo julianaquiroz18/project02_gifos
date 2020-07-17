@@ -8,6 +8,7 @@
         position: absolute;
         left: vw(22, 375);
         top: vw(29, 375);
+        z-index: 6;
     }
     &__button {
         display: none;
@@ -141,5 +142,8 @@
         margin: 35px 0 38px vw(45, 1440);
         color: $purple;
         text-transform: uppercase;
+    }
+    .current-page {
+        color: $gray-line;
     }
 }

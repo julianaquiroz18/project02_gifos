@@ -113,7 +113,7 @@ button {
 .gifos-wrapper {
   display: -ms-grid;
   display: grid;
-  margin: 0 5.6vw 78px;
+  margin: 0 5.6vw;
   -webkit-column-gap: 21px;
           column-gap: 21px;
   row-gap: 25px;
@@ -158,7 +158,7 @@ button {
 
 @media screen and (min-width: 1024px) {
   .gifos-wrapper {
-    margin: 0 10.90278vw 78px 10.83333vw;
+    margin: 0 10.90278vw 0 10.83333vw;
     -webkit-column-gap: 29px;
             column-gap: 29px;
     row-gap: 30px;
@@ -243,6 +243,95 @@ button {
   }
 }
 
+.links-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 5px;
+}
+
+.links-content__icon {
+  font-size: 21px;
+}
+
+.links-content__title {
+  font-size: 20px;
+  line-height: 30px;
+  font-family: “ProximaNova-Bold”;
+  margin: 6px 0 46px;
+}
+
+.links-content__button {
+  margin: 78px 0;
+  width: 127px;
+  height: 50px;
+  border-radius: 25px;
+  border: 1px solid #572EE5;
+  background-color: white;
+  color: #572EE5;
+  font-family: “ProximaNova-Bold”;
+  font-size: 13px;
+  line-height: 16px;
+  position: relative;
+}
+
+.links-content__button:hover {
+  background-color: #572EE5;
+  color: white;
+}
+
+@media screen and (min-width: 768px) {
+  .links-content {
+    margin-top: 11px;
+  }
+  .links-content__title {
+    font-size: 30px;
+    line-height: 30px;
+    font-family: “ProximaNova-Bold”;
+    margin-bottom: 38px;
+  }
+}
+
+.no-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 74px 0 141px;
+}
+
+.no-content__img {
+  width: 150px;
+  height: 150px;
+}
+
+.no-content__info {
+  max-width: 427px;
+  margin-top: 28px;
+  text-align: center;
+  color: #50E3C2;
+  font-size: 25px;
+  line-height: 25px;
+  font-family: “ProximaNova-Bold”;
+}
+
+.no-content__info span:after {
+  content: "";
+}
+
 :root {
   font-family: “ProximaNova-Regular”;
   color: #572EE5;
@@ -261,6 +350,7 @@ button {
   position: absolute;
   left: 5.86667vw;
   top: 7.73333vw;
+  z-index: 6;
 }
 
 .navigation-bar__button {
@@ -410,6 +500,9 @@ button {
     color: #572EE5;
     text-transform: uppercase;
   }
+  .current-page {
+    color: #9CAFC3;
+  }
 }
 
 .gifos-searcher {
@@ -558,7 +651,7 @@ button {
 }
 
 .search-results__button {
-  margin-bottom: 79px;
+  margin: 78px 0;
   width: 127px;
   height: 50px;
   border-radius: 25px;
