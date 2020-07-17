@@ -55,6 +55,7 @@
         font-size: 20px;
         background-color: white;
         outline: none;
+        color: $purple;
     }
 }
 
@@ -63,5 +64,39 @@
         margin: 75px 0 25px;
         @include font(40, 50);
         max-width: 600px;
+    }
+}
+
+//Las siguientes clases se usan para
+//el modo de: Busqueda activa
+.active-search {
+    height: 200px;
+    &__suggestions {
+        border-top: 1px solid $gray-line;
+        position: absolute;
+        top: 47px;
+        height: 153px;
+        width: vw(286, 375);
+        max-width: 503px;
+        padding: 14px 0 18px;
+        margin: 0 24px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    &__suggestion {
+        color: $gray-line;
+        @include font(16, 20);
+        & .icon-icon-search::after {
+            content: " ";
+        }
+    }
+    &__search {
+        color: $gray-line;
+        left: 20px;
+    }
+    &__close {
+        font-size: 14px;
     }
 }

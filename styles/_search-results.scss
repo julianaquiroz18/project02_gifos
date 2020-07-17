@@ -7,7 +7,7 @@
         width: vw(157, 375);
         max-width: 338px;
         height: 1px;
-        background-color: #9CAFC3;
+        background-color: $gray-line;
     }
     &__title {
         @include bold;
@@ -15,14 +15,6 @@
         @include font(30, 40);
         margin: 40px 0;
         text-align: center;
-    }
-    &__wrapper {
-        display: grid;
-        margin: 0 vw(21, 375) 78px;
-        column-gap: 21px;
-        row-gap: 25px;
-        grid-template-columns: repeat(2, 2fr);
-        grid-template-rows: repeat(auto-fill, auto);
     }
     &__button {
         margin-bottom: 79px;
@@ -53,6 +45,21 @@
     }
 }
 
-.prueba {
-    width: 156px;
+//Search without results
+.search-without-results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 62px 0 150px;
+    &__img {
+        width: 150px;
+        height: 150px;
+    }
+    &__info {
+        margin-top: 28px;
+        text-align: center;
+        color: $turquoise;
+        @include font(25, 25);
+        @include bold;
+    }
 }

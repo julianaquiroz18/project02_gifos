@@ -227,7 +227,7 @@
 
 .icon-icon-search:before {
     content: "\e924";
-    color: #572ee5;
+    /* color: #572ee5; */
 }
 
 .icon-icon-twitter:before {

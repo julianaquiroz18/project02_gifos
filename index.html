@@ -29,21 +29,83 @@
         <section class="gifos-searcher">
             <h1 class="gifos-searcher__title">Inspírate, busca, guarda, y crea los mejores <span>GIFOS</span></h1>
             <img class="gifos-searcher__image" src="./assets/ilustra_header.svg" alt="Imagen de bienvenida">
-            <div class="search-bar">
+            <div class="search-bar active-search">
                 <input class="search-bar__input" type="text" placeholder="Busca GIFOS y más">
-                <button class="search-bar__button" type="button"><i class="icon-icon-search"></i></button>
+                <button class="search-bar__button active-search__search" type="button"><i class="icon-icon-search"></i></button>
+                <button class="search-bar__button active-search__close" type="button"><i class="icon-button-close"></i></button>
+                <div class="active-search__suggestions">
+                    <p class="active-search__suggestion"><i class="icon-icon-search"></i>Sugerencia 1</p>
+                    <p class="active-search__suggestion"><i class="icon-icon-search"></i>Sugerencia 1</p>
+                    <p class="active-search__suggestion"><i class="icon-icon-search"></i>Sugerencia 1</p>
+                    <p class="active-search__suggestion"><i class="icon-icon-search"></i>Sugerencia 1</p>
+                </div>
             </div>
         </section>
         <p class="trending-def"><span>Trending:</span>Reactions, Entertainment, Sports, Stickers, Artists</p>
         <section class="search-results">
             <span class="search-results__line"></span>
             <h2 class="search-results__title">Mascotas</h2>
-            <div class="search-results__wrapper">
-                <img class="prueba" src="https://lorempixel.com/output/cats-q-c-357-274-10.jpg" alt="Gifo">
-                <img class="prueba" src="https://lorempixel.com/output/cats-q-c-357-274-10.jpg" alt="Gifo">
-                <img class="prueba" src="https://lorempixel.com/output/cats-q-c-357-274-10.jpg" alt="Gifo">
-                <img class="prueba" src="https://lorempixel.com/output/cats-q-c-357-274-10.jpg" alt="Gifo">
-                <img class="prueba" src="https://lorempixel.com/output/cats-q-c-357-274-10.jpg" alt="Gifo">
+            <div class="search-without-results">
+                <img class="search-without-results__img" src="./assets/icon-busqueda-sin-resultado.svg" alt="Busqueda sin resultado">
+                <p class="search-without-results__info">Intenta con otra búsqueda</p>
+            </div>
+            <div class="gifos-wrapper">
+                <div class="gifos-container-card">
+                    <img class="gifos-container-card__img" src="https://lorempixel.com/output/cats-q-c-357-274-10.jpg" alt="Gifo">
+                    <div class="overlay">
+                        <div class="gifos-container-card__buttons">
+                            <button class="card-button" type="button"><i class="icon-icon-fav-hover"></i></button>
+                            <button class="card-button" type="button"><i class="icon-icon-download"></i></button>
+                            <button class="card-button" type="button"><i class="icon-icon-max"></i></button>
+                        </div>
+                        <div class="gifos-container-card__info">
+                            <p class="card__user">User</p>
+                            <p class="card__title">Titulo GIFO</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gifos-container-card">
+                    <img class="gifos-container-card__img" src="https://lorempixel.com/output/cats-q-c-357-274-10.jpg" alt="Gifo">
+                    <div class="overlay">
+                        <div class="gifos-container-card__buttons">
+                            <button class="card-button" type="button"><i class="icon-icon-fav-hover"></i></button>
+                            <button class="card-button" type="button"><i class="icon-icon-download"></i></button>
+                            <button class="card-button" type="button"><i class="icon-icon-max"></i></button>
+                        </div>
+                        <div class="gifos-container-card__info">
+                            <p class="card__user">User</p>
+                            <p class="card__title">Titulo GIFO</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gifos-container-card">
+                    <img class="gifos-container-card__img" src="https://lorempixel.com/output/cats-q-c-357-274-10.jpg" alt="Gifo">
+                    <div class="overlay">
+                        <div class="gifos-container-card__buttons">
+                            <button class="card-button" type="button"><i class="icon-icon-fav-hover"></i></button>
+                            <button class="card-button" type="button"><i class="icon-icon-download"></i></button>
+                            <button class="card-button" type="button"><i class="icon-icon-max"></i></button>
+                        </div>
+                        <div class="gifos-container-card__info">
+                            <p class="card__user">User</p>
+                            <p class="card__title">Titulo GIFO</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gifos-container-card">
+                    <img class="gifos-container-card__img" src="https://lorempixel.com/output/cats-q-c-357-274-10.jpg" alt="Gifo">
+                    <div class="overlay">
+                        <div class="gifos-container-card__buttons">
+                            <button class="card-button" type="button"><i class="icon-icon-fav-hover"></i></button>
+                            <button class="card-button" type="button"><i class="icon-icon-download"></i></button>
+                            <button class="card-button" type="button"><i class="icon-icon-max"></i></button>
+                        </div>
+                        <div class="gifos-container-card__info">
+                            <p class="card__user">User</p>
+                            <p class="card__title">Titulo GIFO</p>
+                        </div>
+                    </div>
+                </div>
             </div>
             <button class="search-results__button">VER MAS</button>
         </section>
@@ -53,7 +115,7 @@
             <button class="trending-box__button trending-box__button-left" type="button"><i class="icon-button-left"></i></button>
             <button class="trending-box__button trending-box__button-right" type="button"><i class="icon-button-right"></i></button>
             <div class="gifos-carrousel">
-                <div class="gifos-container-card">
+                <div class="gifos-container-card trending-card">
                     <img class="gifos-container-card__img" src="https://lorempixel.com/output/cats-q-c-357-274-10.jpg" alt="Gifo">
                     <div class="overlay">
                         <div class="gifos-container-card__buttons">
@@ -67,7 +129,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="gifos-container-card">
+                <div class="gifos-container-card trending-card">
                     <img class="gifos-container-card__img" src="https://lorempixel.com/output/cats-q-c-357-274-10.jpg" alt="Gifo">
                     <div class="overlay">
                         <div class="gifos-container-card__buttons">
@@ -81,7 +143,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="gifos-container-card">
+                <div class="gifos-container-card trending-card">
                     <img class="gifos-container-card__img" src="https://lorempixel.com/output/cats-q-c-357-274-10.jpg" alt="Gifo">
                     <div class="overlay">
                         <div class="gifos-container-card__buttons">
@@ -95,7 +157,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="gifos-container-card">
+                <div class="gifos-container-card trending-card">
                     <img class="gifos-container-card__img" src="https://lorempixel.com/output/cats-q-c-357-274-10.jpg" alt="Gifo">
                     <div class="overlay">
                         <div class="gifos-container-card__buttons">
