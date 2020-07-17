@@ -1,4 +1,4 @@
-.trending-def {
+.trending-topics {
     @include font(18, 25);
     margin: 30px 0 48px;
     width: vw(210, 375);
@@ -7,12 +7,8 @@
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    & span {
+    &__title {
         @include bold;
-        &::after {
-            content: '\A';
-            white-space: pre;
-        }
     }
 }
 
@@ -51,7 +47,7 @@
 }
 
 @media screen and (min-width: 1024px) {
-    .trending-def {
+    .trending-topics {
         margin: 73px 0 102px;
     }
     .trending-box {

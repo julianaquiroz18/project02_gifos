@@ -708,7 +708,7 @@ button {
   font-family: “ProximaNova-Bold”;
 }
 
-.trending-def {
+.trending-topics {
   font-size: 18px;
   line-height: 25px;
   margin: 30px 0 48px;
@@ -721,13 +721,8 @@ button {
   text-align: center;
 }
 
-.trending-def span {
+.trending-topics__title {
   font-family: “ProximaNova-Bold”;
-}
-
-.trending-def span::after {
-  content: '\A';
-  white-space: pre;
 }
 
 .trending-box {
@@ -773,7 +768,7 @@ button {
 }
 
 @media screen and (min-width: 1024px) {
-  .trending-def {
+  .trending-topics {
     margin: 73px 0 102px;
   }
   .trending-box {
