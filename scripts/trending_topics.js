@@ -1,27 +1,11 @@
+import { apiRequest } from './services.js';
 /**
  * Global Variables
  */
-
 const trendingList = document.querySelector(".trending-topics__list");
 const trendingTopicsURL = "https://api.giphy.com/v1/trending/searches?api_key=9Bbx127nke90Ndmr1nuEio9LFbL62OpO"
 
-/**
- * @method getTrendingTopics
- * @description Get trending topics from API
- * @param URL
- * @returns promise
- */
-async function getTrendingTopics(URL) {
-    const response = await fetch(URL);
-    if (response.ok) {
-        const json = await response.json();
-        return (json);
-    } else {
-        throw new Error("Hay un error");
-    }
-}
-
-const trendingTopics = getTrendingTopics(trendingTopicsURL);
+const trendingTopics = apiRequest(trendingTopicsURL);
 trendingTopics.then((response) => {
     const trendingTopicsArray = response.data;
     trendingList.textContent = topicsString(trendingTopicsArray.slice(0, 5));
