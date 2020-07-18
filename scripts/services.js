@@ -13,11 +13,17 @@ function apiRequest(URL) {
 }
 
 function searchGifos(URL, queryTerm, limit, offset) {
-    const completeURL = `${URL}?q=${queryTerm}&limit=${limit}&offset=${offset}`;
+    const completeURL = `${URL}&q=${queryTerm}&limit=${limit}&offset=${offset}`;
+    return apiRequest(completeURL);
+}
+
+function autoComplete(URL, queryTerm) {
+    const completeURL = `${URL}&q=${queryTerm}`;
     return apiRequest(completeURL);
 }
 
 export {
 
-    apiRequest
+    apiRequest,
+    autoComplete
 };

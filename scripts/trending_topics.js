@@ -9,7 +9,7 @@ const trendingTopics = apiRequest(trendingTopicsURL);
 trendingTopics.then((response) => {
     const trendingTopicsArray = response.data;
     trendingList.textContent = topicsString(trendingTopicsArray.slice(0, 5));
-});
+}).catch((error) => { console.log(error) });
 
 /**
  * @method topicsString

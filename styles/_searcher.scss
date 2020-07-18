@@ -28,10 +28,15 @@
     height: auto;
 }
 
+.wrapper {
+    position: relative;
+    height: 50px;
+}
+
 .search-bar {
     width: vw(334, 375);
     max-width: 551px;
-    height: 50px;
+    min-height: 50px;
     border: $purple solid 1px;
     border-radius: 27px;
     left: 50%;
@@ -41,10 +46,12 @@
         position: absolute;
         left: 55px;
         top: 15px;
-        width: 215px;
+        width: vw(215, 375);
+        max-width: 420px;
         border: 0;
         padding: 0;
         margin: 0px;
+        outline: none;
         @include font(16, 20);
         @include regular;
     }
@@ -70,12 +77,9 @@
 //Las siguientes clases se usan para
 //el modo de: Busqueda activa
 .active-search {
-    height: 200px;
     &__suggestions {
         border-top: 1px solid $gray-line;
-        position: absolute;
-        top: 47px;
-        height: 153px;
+        position: relative;
         width: vw(286, 375);
         max-width: 503px;
         padding: 14px 0 18px;
@@ -86,6 +90,7 @@
         justify-content: space-between;
     }
     &__suggestion {
+        list-style: none;
         color: $gray-line;
         @include font(16, 20);
         & .icon-icon-search::after {

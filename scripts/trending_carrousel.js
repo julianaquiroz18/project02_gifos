@@ -9,7 +9,7 @@ let allGifosCards = "";
 const trendingGifosData = apiRequest(trendingGifosURL);
 trendingGifosData.then((response) => {
     getGifos(response.data);
-});
+}).catch((error) => { console.log(error) });
 /**
  * @method getGifos
  * @description Get gifo URL
@@ -18,7 +18,9 @@ trendingGifosData.then((response) => {
 const getGifos = (gifosInfo) => {
     gifosInfo.forEach((gifo) => {
         const gifoURL = gifo.images.original.url;
-        gifosCarrousel.innerHTML = allTrendingGifos(gifoURL);
+        const gifoUser = gifo.username;
+        const gifoTitle = gifo.title;
+        gifosCarrousel.innerHTML = allTrendingGifos(gifoURL, gifoUser, gifoTitle);
     });
 };
 /**
@@ -27,8 +29,8 @@ const getGifos = (gifosInfo) => {
  * @param string 
  * @returns string
  */
-const allTrendingGifos = ((gifoURL) => {
-    allGifosCards += cardMarkup(gifoURL);
+const allTrendingGifos = ((gifoURL, gifoUser, gifoTitle) => {
+    allGifosCards += cardMarkup(gifoURL, gifoUser, gifoTitle);
     return allGifosCards;
 })
 
@@ -38,10 +40,10 @@ const allTrendingGifos = ((gifoURL) => {
  * @param string 
  * @returns string
  */
-const cardMarkup = ((img) => {
+const cardMarkup = ((url, user, title) => {
     return (
         `<div class="gifos-container-card trending-card">
-            <img class="gifos-container-card__img" src=${img} alt="Gifo">
+            <img class="gifos-container-card__img" src=${url} alt="Gifo">
             <div class="overlay">
                 <div class="gifos-container-card__buttons">
                     <button class="card-button" type="button"><i class="icon-icon-fav-hover"></i></button>
@@ -49,8 +51,8 @@ const cardMarkup = ((img) => {
                     <button class="card-button" type="button"><i class="icon-icon-max"></i></button>
                 </div>
             <div class="gifos-container-card__info">
-                <p class="card__user">User</p>
-                <p class="card__title">Titulo GIFO</p>
+                <p class="card__user">${user}</p>
+                <p class="card__title">${title}</p>
             </div>
         </div>
     </div>`

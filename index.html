@@ -29,16 +29,15 @@
         <section class="gifos-searcher">
             <h1 class="gifos-searcher__title">Inspírate, busca, guarda, y crea los mejores <span>GIFOS</span></h1>
             <img class="gifos-searcher__image" src="./assets/ilustra_header.svg" alt="Imagen de bienvenida">
-            <div class="search-bar active-search">
-                <input class="search-bar__input" type="text" placeholder="Busca GIFOS y más">
-                <button class="search-bar__button active-search__search" type="button"><i class="icon-icon-search"></i></button>
-                <button class="search-bar__button active-search__close" type="button"><i class="icon-button-close"></i></button>
-                <div class="active-search__suggestions">
-                    <p class="active-search__suggestion"><i class="icon-icon-search"></i>Sugerencia 1</p>
-                    <p class="active-search__suggestion"><i class="icon-icon-search"></i>Sugerencia 1</p>
-                    <p class="active-search__suggestion"><i class="icon-icon-search"></i>Sugerencia 1</p>
-                    <p class="active-search__suggestion"><i class="icon-icon-search"></i>Sugerencia 1</p>
+            <div class="search-bar">
+                <div class="wrapper">
+                    <input class="search-bar__input" type="text" placeholder="Busca GIFOS y más">
+                    <button class="search-bar__button search-icon" type="button"><i class="icon-icon-search"></i></button>
+                    <button class="search-bar__button active-search__close hidden" type="button"><i class="icon-button-close"></i></button>
                 </div>
+                <ul class="active-search__suggestions hidden">
+
+                </ul>
             </div>
         </section>
         <section class="trending-topics">
@@ -135,6 +134,8 @@
     </footer>
     <script type="module" src="./scripts/trending_topics.js"></script>
     <script type="module" src="./scripts/trending_carrousel.js"></script>
+    <script type="module" src="./scripts/autocomplete.js"></script>
+    <script type="module" src="./scripts/search.js"></script>
 </body>
 
 </html>
