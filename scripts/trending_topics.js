@@ -1,5 +1,6 @@
 import { apiRequest } from './services.js';
-import constant from './utils.js';
+import constant from './constants.js';
+import { capitalizeFirstLetter } from './helpers.js';
 /**
  * Global Variables
  */
@@ -27,14 +28,4 @@ const topicsString = (topics) => {
         topicsString += capitalizeFirstLetter(element) + ', '
     });
     return topicsString.slice(0, -2);
-}
-
-/**
- * @method capitalizeFirstLetter
- * @description 
- * @param string
- * @returns string
- */
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
 }

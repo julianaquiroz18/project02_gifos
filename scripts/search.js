@@ -1,5 +1,7 @@
 import { autoCompleteRequest, searchGifosRequest } from './services.js';
-import constant from './utils.js';
+import constant from './constants.js';
+import { capitalizeFirstLetter } from './helpers.js';
+import { makeGifosCards } from './gifos_card_maker.js';
 /**
  * Global Variables
  */
@@ -11,7 +13,6 @@ const searchInput = document.querySelector(".search-bar__input");
 const autoCompleteURL = constant.BASE_URL + "gifs/search/tags" + constant.API_KEY;
 const searchURL = constant.BASE_URL + "gifs/search" + constant.API_KEY;
 let allSuggestions;
-let inputValue;
 let isCurrentlySearching = false;
 
 /**
@@ -159,8 +160,8 @@ function searchGifos(e) {
     if (e.keyCode === 13 || e.type === "click") {
         clean(false);
         searchBarBtn.classList.add("hidden");
-        inputValue = searchInput.value;
-        console.log(inputValue);
+        document.querySelector(".search-results__title").textContent = capitalizeFirstLetter(searchInput.value);
+        console.log(searchInput.value);
         requestGifos();
     }
 }
@@ -173,10 +174,8 @@ function requestGifos() {
             noResults.classList.remove("hidden");
             return;
         }
-        const prueba = document.querySelector(".search-results__title");
-        prueba.textContent = searchInput.value;
-        console.log(prueba);
+        const htmlNode = document.querySelector(".gifos-wrapper");
+        makeGifosCards(response, htmlNode, "search_type");
         console.log(response.data);
-
     }).catch((error) => { console.log(error) });
 }
