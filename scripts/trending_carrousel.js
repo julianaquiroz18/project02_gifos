@@ -1,8 +1,9 @@
 import { apiRequest } from './services.js';
+import constant from './utils.js';
 /**
  * Global Variables
  */
-const trendingGifosURL = "https://api.giphy.com/v1/gifs/trending?api_key=9Bbx127nke90Ndmr1nuEio9LFbL62OpO";
+const trendingGifosURL = constant.BASE_URL + "gifs/trending" + constant.API_KEY;
 const gifosCarrousel = document.querySelector(".gifos-carrousel");
 let allGifosCards = "";
 

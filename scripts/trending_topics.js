@@ -1,9 +1,13 @@
 import { apiRequest } from './services.js';
+import constant from './utils.js';
 /**
  * Global Variables
  */
 const trendingList = document.querySelector(".trending-topics__list");
-const trendingTopicsURL = "https://api.giphy.com/v1/trending/searches?api_key=9Bbx127nke90Ndmr1nuEio9LFbL62OpO"
+const trendingTopicsURL = constant.BASE_URL + "trending/searches" + constant.API_KEY;
+
+//const trendingTopicsURL = "https://api.giphy.com/v1/trending/searches?api_key=9Bbx127nke90Ndmr1nuEio9LFbL62OpO"
+
 
 const trendingTopics = apiRequest(trendingTopicsURL);
 trendingTopics.then((response) => {

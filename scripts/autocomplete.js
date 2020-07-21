@@ -1,27 +1,44 @@
-import { autoComplete } from './services.js';
-
-
+import { autoCompleteRequest, searchGifosRequest } from './services.js';
+import constant from './utils.js';
+/**
+ * Global Variables
+ */
 const searchBar = document.querySelector(".search-bar");
 const searchBarBtn = document.querySelector(".search-bar__button");
 const searchClose = document.querySelector(".active-search__close");
 const suggestionsBlock = document.querySelector(".active-search__suggestions");
 const searchInput = document.querySelector(".search-bar__input");
-const autoCompleteURL = "https://api.giphy.com/v1/gifs/search/tags?api_key=9Bbx127nke90Ndmr1nuEio9LFbL62OpO";
+const autoCompleteURL = constant.BASE_URL + "gifs/search/tags" + constant.API_KEY;
+const searchURL = constant.BASE_URL + "gifs/search" + constant.API_KEY;
 let allSuggestions;
+let inputValue;
 let isCurrentlySearching = false;
 
-searchInput.addEventListener('keyup', search);
-searchClose.addEventListener('click', clean);
+/**
+ * Events
+ */
+searchInput.addEventListener('keyup', searchSuggestions);
+searchInput.addEventListener('keypress', searchGifos);
+searchClose.addEventListener('click', function() { clean(true) });
+searchClose.addEventListener('click', cleanInput);
+searchBarBtn.addEventListener('click', searchGifos);
 
-function search() {
+/**
+ * @method searchSuggestions
+ * @description Method to handle API request acording to input value 
+ * and previous request status
+ */
+function searchSuggestions(e) {
+    if (e.keyCode === 13) {
+        return;
+    }
     if (searchInput.value === "") {
-        clean();
+        clean(true);
         isCurrentlySearching = false;
         allSuggestions = "";
         return;
     }
     if (isCurrentlySearching) {
-        console.log("currently searching" + allSuggestions);
         return;
     }
     isCurrentlySearching = true;
@@ -29,26 +46,70 @@ function search() {
     requestSuggestions();
 }
 
+/**
+ * @method requestSuggestions
+ * @description Method to request suggestions to API
+ * @param string 
+ */
 function requestSuggestions() {
-    const autoCompleteData = autoComplete(autoCompleteURL, searchInput.value);
+    const autoCompleteData = autoCompleteRequest(autoCompleteURL, searchInput.value);
     autoCompleteData.then((response) => {
         if (response.data.length === 0) {
-            clean();
-            showNoResultMesagge();
+            clean(false);
             isCurrentlySearching = false;
             return;
         }
         getSuggestions(response.data);
         updateSearchBar();
         isCurrentlySearching = false;
-        console.log("ya temine la busqueda" + allSuggestions);
     }).catch((error) => { console.log(error) });
 }
 
-function showNoResultMesagge() {
-    console.log("no hay resultados");
-}
+/**
+ * @method getSuggestions
+ * @description Get suggestion info
+ * @param array Suggestion list
+ */
+const getSuggestions = (response => {
+    if (response.length) {
+        response.forEach(element => {
+            suggestionsBlock.innerHTML = allSuggestionsLines(element.name);
+        });
+        const suggestionList = document.querySelectorAll(".active-search__suggestion");
+        suggestionList.forEach((element) => element.addEventListener('click', selectAndSearch));
+    } else {
+        isCurrentlySearching = false;
+    }
 
+})
+
+/**
+ * @method allSuggestionsLines
+ * @description create Suggestions list
+ * @param string 
+ * @returns string
+ */
+const allSuggestionsLines = (suggestion => {
+    allSuggestions += suggestionMarkUp(suggestion);
+    return allSuggestions;
+});
+
+/**
+ * @method suggestionMarkUp
+ * @description Suggestion marking method
+ * @param string 
+ * @returns string
+ */
+const suggestionMarkUp = ((suggestion) => {
+    return (
+        `<li class="active-search__suggestion"><a class="suggestion-selected"><i class="icon-icon-search"></i>${suggestion}</a></li>`
+    );
+});
+
+/**
+ * @method updateSearchBar
+ * @description Update Search bar UI to show suggestions
+ */
 function updateSearchBar() {
     searchBar.classList.add("active-search");
     searchBarBtn.classList.add("active-search__search");
@@ -57,28 +118,65 @@ function updateSearchBar() {
 
 }
 
-function clean() {
+/**
+ * @method clean
+ * @description Update search bar to remove UI when there are not suggestions
+ */
+function clean(isOriginalState) {
     suggestionsBlock.innerHTML = "";
     searchBar.classList.remove("active-search");
-    searchBarBtn.classList.remove("active-search__search");
-    searchClose.classList.add("hidden");
     suggestionsBlock.classList.add("hidden");
+    if (isOriginalState === true) {
+        searchBarBtn.classList.remove("active-search__search");
+        searchBarBtn.classList.remove("hidden");
+        searchClose.classList.add("hidden");
+    } else {
+        searchClose.classList.remove("hidden");
+    }
+}
+
+/**
+ * @method cleanInput
+ * @description Clear Input when X is clicked
+ */
+function cleanInput() {
+    searchInput.value = "";
+}
+
+/**
+ * @method selectAndSearch
+ * @description select suggestion and active searching
+ */
+function selectAndSearch(e) {
+    searchInput.value = e.target.innerText;
+    clean(false);
+    searchBarBtn.classList.add("hidden");
+    searchGifos(e);
 }
 
 
-const getSuggestions = (response => {
-    response.forEach(element => {
-        suggestionsBlock.innerHTML = allSuggestionsLines(element.name);
-    });
-})
+function searchGifos(e) {
+    if (e.keyCode === 13 || e.type === "click") {
+        clean(false);
+        searchBarBtn.classList.add("hidden");
+        inputValue = searchInput.value;
+        console.log(inputValue);
+        requestGifos();
+    }
+}
 
-const allSuggestionsLines = (suggestion => {
-    allSuggestions += suggestionMarkUp(suggestion);
-    return allSuggestions;
-});
+function requestGifos() {
+    const gifosData = searchGifosRequest(searchURL, searchInput.value, 0);
+    gifosData.then((response) => {
+        if (response.data.length === 0) {
+            const noResults = document.querySelector(".search-without-results");
+            noResults.classList.remove("hidden");
+            return;
+        }
+        const prueba = document.querySelector(".search-results__title");
+        prueba.textContent = searchInput.value;
+        console.log(prueba);
+        console.log(response.data);
 
-const suggestionMarkUp = ((suggestion) => {
-    return (
-        `<li class="active-search__suggestion"><a class="suggestion-selected"><i class="icon-icon-search"></i>${suggestion}</a></li>`
-    );
-});
+    }).catch((error) => { console.log(error) });
+}

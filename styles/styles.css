@@ -628,6 +628,7 @@ button {
 }
 
 .active-search__close {
+  top: 18px;
   font-size: 14px;
 }
 

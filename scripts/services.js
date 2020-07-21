@@ -12,18 +12,20 @@ function apiRequest(URL) {
     });
 }
 
-function searchGifos(URL, queryTerm, limit, offset) {
-    const completeURL = `${URL}&q=${queryTerm}&limit=${limit}&offset=${offset}`;
+function autoCompleteRequest(URL, queryTerm) {
+    const completeURL = `${URL}&q=${queryTerm}`;
     return apiRequest(completeURL);
 }
 
-function autoComplete(URL, queryTerm) {
-    const completeURL = `${URL}&q=${queryTerm}`;
+
+function searchGifosRequest(URL, queryTerm, offset) {
+    const completeURL = `${URL}&q=${queryTerm}&limit=12&offset=${offset}`;
     return apiRequest(completeURL);
 }
 
 export {
 
     apiRequest,
-    autoComplete
+    autoCompleteRequest,
+    searchGifosRequest
 };
