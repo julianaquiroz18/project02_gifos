@@ -77,12 +77,12 @@
 //Las siguientes clases se usan para
 //el modo de: Busqueda activa
 .active-search {
-    &__suggestions {
+    &__suggestions-list {
         border-top: 1px solid $gray-line;
         position: relative;
         width: vw(286, 375);
         max-width: 503px;
-        padding: 14px 0 18px;
+        padding: 14px 0 8px;
         margin: 0 24px;
         box-sizing: border-box;
         display: flex;
@@ -92,9 +92,10 @@
     &__suggestion {
         list-style: none;
         color: $gray-line;
+        margin-bottom: 10px;
         @include font(16, 20);
-        & .icon-icon-search::after {
-            content: " ";
+        & .icon-icon-search {
+            margin-right: 15px;
         }
     }
     &__search {

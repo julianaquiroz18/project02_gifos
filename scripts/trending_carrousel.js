@@ -6,6 +6,11 @@ import { makeGifosCards } from './gifos_card_maker.js';
  */
 const trendingGifosURL = constant.BASE_URL + "gifs/trending" + constant.API_KEY;
 
+/**
+ * @method trendingGifosData
+ * @description get trending gifod data
+ * @param string URL
+ */
 const trendingGifosData = apiRequest(trendingGifosURL);
 trendingGifosData.then((response) => {
     const htmlNode = document.querySelector(".gifos-carrousel");
