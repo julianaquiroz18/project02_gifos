@@ -2,7 +2,7 @@ import { autoCompleteRequest, searchGifosRequest } from './services.js';
 import constant from './constants.js';
 import { capitalizeFirstLetter } from './helpers.js';
 import { makeGifosCards } from './gifos_card_maker.js';
-import { drawSuggestions } from './suggestions_maker.js';
+import { displaySuggestions } from './suggestions_maker.js';
 /**
  * Global Variables
  */
@@ -15,13 +15,19 @@ const searchInput = document.querySelector(".search-bar__input");
 
 let isCurrentlySearching = false;
 
+const searchBarState = {
+    INITIAL: "initial",
+    WITH_SUGGESTIONS: "with_suggestions",
+    WITHOUT_SUGGESTIONS: "without_suggestions",
+    AFTER_SEARCH: "after_search",
+}
+
 /**
  * Events
  */
 searchInput.addEventListener('keyup', listenInputKeyEvent);
-searchClose.addEventListener('click', function() { restoreSearchBarUI(true) });
-searchClose.addEventListener('click', cleanInput);
-searchBarBtn.addEventListener('click', searchGifos);
+searchClose.addEventListener('click', listenCloseEvent);
+searchBarBtn.addEventListener('click', listenSearchClick);
 
 /**
  * @method listenInputKeyEvent
@@ -29,13 +35,14 @@ searchBarBtn.addEventListener('click', searchGifos);
  * and previous request status
  */
 function listenInputKeyEvent(e) {
-    if (e.keyCode === 13) {
-        searchGifos(e);
+    const isEnterKey = e.keyCode === 13;
+    if (isEnterKey === true) {
+        updateSearchBarState(searchBarState.AFTER_SEARCH);
+        searchGifos();
         return;
     }
     if (searchInput.value === "") {
-        restoreSearchBarUI(true);
-        searchBarBtn.classList.remove("hidden");
+        updateSearchBarState(searchBarState.INITIAL);
         isCurrentlySearching = false;
         return;
     }
@@ -55,79 +62,84 @@ function requestSuggestions() {
     const autoCompleteData = autoCompleteRequest(autoCompleteURL, searchInput.value);
     autoCompleteData.then((response) => {
         if (response.data.length === 0) {
-            restoreSearchBarUI(false);
-            searchBarBtn.classList.remove("hidden");
+            updateSearchBarState(searchBarState.WITHOUT_SUGGESTIONS);
             isCurrentlySearching = false;
             return;
         }
-        drawSuggestions(response.data);
+        displaySuggestions(response.data);
         const suggestionList = document.querySelectorAll(".active-search__suggestion");
-        suggestionList.forEach((element) => element.addEventListener('click', selectAndSearch));
-        updateSearchBar();
+        suggestionList.forEach((element) => element.addEventListener('click', listenSelectedSuggestion));
+        updateSearchBarState(searchBarState.WITH_SUGGESTIONS);
         isCurrentlySearching = false;
     }).catch((error) => { console.log(error) });
 }
 
-
-
 /**
- * @method updateSearchBar
- * @description Update Search bar UI to show suggestions
- */
-function updateSearchBar() {
-    suggestionsBlock.classList.remove("hidden");
-    searchBarBtn.classList.add("active-search__search");
-    searchClose.classList.remove("hidden");
-}
-
-/**
- * @method restoreSearchBarUI
+ * @method updateSearchBarState
  * @description Update search bar to remove UI when there are not suggestions
  */
-function restoreSearchBarUI(isOriginalState) {
-    suggestionsBlock.innerHTML = "";
-    suggestionsBlock.classList.add("hidden");
-    if (isOriginalState === true) {
-        searchBarBtn.classList.remove("active-search__search");
-        searchClose.classList.add("hidden");
-    } else {
-        searchBarBtn.classList.add("active-search__search");
-        searchClose.classList.remove("hidden");
-        searchBarBtn.classList.add("hidden");
+function updateSearchBarState(state) {
+
+    switch (state) {
+        case searchBarState.INITIAL:
+            searchInput.value = "";
+            suggestionsBlock.innerHTML = "";
+            suggestionsBlock.classList.add("hidden");
+            searchClose.classList.add("hidden");
+            searchBarBtn.classList.remove("active-search__search");
+            searchBarBtn.classList.remove("hidden");
+            break;
+        case searchBarState.WITH_SUGGESTIONS:
+            suggestionsBlock.classList.remove("hidden");
+            searchBarBtn.classList.add("active-search__search");
+            searchClose.classList.remove("hidden");
+            break;
+        case searchBarState.WITHOUT_SUGGESTIONS:
+            suggestionsBlock.innerHTML = "";
+            suggestionsBlock.classList.add("hidden");
+            searchClose.classList.remove("hidden");
+            searchBarBtn.classList.remove("hidden");
+            searchBarBtn.classList.add("active-search__search");
+            break;
+        case searchBarState.AFTER_SEARCH:
+            suggestionsBlock.innerHTML = "";
+            suggestionsBlock.classList.add("hidden");
+            searchBarBtn.classList.add("active-search__search");
+            searchClose.classList.remove("hidden");
+            searchBarBtn.classList.add("hidden");
+            break;
+        default:
+            break;
     }
 }
 
-/**
- * @method cleanInput
- * @description Clear Input when X is clicked and update search bar UI
- */
-function cleanInput() {
-    searchInput.value = "";
-    searchBarBtn.classList.remove("hidden");
+function listenCloseEvent() {
+    updateSearchBarState(searchBarState.INITIAL)
 }
 
-
-
-
+function listenSearchClick() {
+    updateSearchBarState(searchBarState.AFTER_SEARCH);
+    searchGifos();
+}
 
 /**
- * @method selectAndSearch
+ * @method listenSelectedSuggestion
  * @description select suggestion and active searching
  */
-function selectAndSearch(e) {
+function listenSelectedSuggestion(e) {
     searchInput.value = e.target.innerText;
-    restoreSearchBarUI(false);
-    searchGifos(e);
+    updateSearchBarState(searchBarState.AFTER_SEARCH);
+    searchGifos();
 }
 
+function searchGifos() {
+    displayGifosSection()
+    requestGifos();
+}
 
-function searchGifos(e) {
-    restoreSearchBarUI(false);
+function displayGifosSection() {
     document.querySelector(".search-results__title").textContent = capitalizeFirstLetter(searchInput.value);
     document.querySelector(".search-results").classList.remove("hidden");
-    console.log(searchInput.value);
-    requestGifos();
-
 }
 
 function requestGifos() {
