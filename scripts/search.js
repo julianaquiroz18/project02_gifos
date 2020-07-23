@@ -1,8 +1,9 @@
-import { autoCompleteRequest, searchGifosRequest } from './services.js';
 import constant from './constants.js';
+import { autoCompleteRequest, searchGifosRequest } from './services.js';
 import { capitalizeFirstLetter } from './helpers.js';
 import { makeGifosCards } from './gifos_card_maker.js';
 import { displaySuggestions } from './suggestions_maker.js';
+
 /**
  * Global Variables
  */
@@ -12,15 +13,13 @@ const searchBarBtn = document.querySelector(".search-bar__button");
 const searchClose = document.querySelector(".active-search__close");
 const suggestionsBlock = document.querySelector(".active-search__suggestions-list");
 const searchInput = document.querySelector(".search-bar__input");
-
-let isCurrentlySearching = false;
-
 const searchBarState = {
     INITIAL: "initial",
     WITH_SUGGESTIONS: "with_suggestions",
     WITHOUT_SUGGESTIONS: "without_suggestions",
     AFTER_SEARCH: "after_search",
 }
+let isCurrentlySearching = false;
 
 /**
  * Events
@@ -75,8 +74,35 @@ function requestSuggestions() {
 }
 
 /**
+ * @method listenSelectedSuggestion
+ * @description This function is called when any suggestion is clicked
+ */
+function listenSelectedSuggestion(e) {
+    searchInput.value = e.target.innerText;
+    updateSearchBarState(searchBarState.AFTER_SEARCH);
+    searchGifos();
+}
+
+/**
+ * @method listenCloseEvent
+ * @description This function is called when X is clicked
+ */
+function listenCloseEvent() {
+    updateSearchBarState(searchBarState.INITIAL)
+}
+
+/**
+ * @method listenSearchClick
+ * @description This function is called when "magnifying glass" is clicked
+ */
+function listenSearchClick() {
+    updateSearchBarState(searchBarState.AFTER_SEARCH);
+    searchGifos();
+}
+
+/**
  * @method updateSearchBarState
- * @description Update search bar to remove UI when there are not suggestions
+ * @description Update search bar UI according events
  */
 function updateSearchBarState(state) {
 
@@ -113,35 +139,31 @@ function updateSearchBarState(state) {
     }
 }
 
-function listenCloseEvent() {
-    updateSearchBarState(searchBarState.INITIAL)
-}
-
-function listenSearchClick() {
-    updateSearchBarState(searchBarState.AFTER_SEARCH);
-    searchGifos();
-}
 
 /**
- * @method listenSelectedSuggestion
- * @description select suggestion and active searching
+ * @method searchGifos
+ * @description This function request UI update and API information to show the GIFOS 
  */
-function listenSelectedSuggestion(e) {
-    searchInput.value = e.target.innerText;
-    updateSearchBarState(searchBarState.AFTER_SEARCH);
-    searchGifos();
-}
-
 function searchGifos() {
     displayGifosSection()
     requestGifos();
 }
 
+/**
+ * @method displayGifosSection
+ * @description This function update GIFOS UI 
+ */
 function displayGifosSection() {
     document.querySelector(".search-results__title").textContent = capitalizeFirstLetter(searchInput.value);
     document.querySelector(".search-results").classList.remove("hidden");
+    document.querySelector(".search-without-results").classList.add("hidden");
+    document.querySelector(".search-results__button").classList.add("hidden");
 }
 
+/**
+ * @method displayGifosSection
+ * @description This function request GIFOS information to API
+ */
 function requestGifos() {
     const gifosData = searchGifosRequest(searchURL, searchInput.value, 0);
     gifosData.then((response) => {
