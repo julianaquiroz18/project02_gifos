@@ -6,11 +6,12 @@ let allGifosCards;
  */
 function makeGifosCards(gifosInfo, htmlNode, cardType) {
     allGifosCards = "";
-    gifosInfo.data.forEach((gifo) => {
+    gifosInfo.data.forEach((gifo, index) => {
         const gifoURL = gifo.images.original.url;
         const gifoUser = gifo.username;
         const gifoTitle = gifo.title;
-        htmlNode.innerHTML = allGifos(gifoURL, gifoUser, gifoTitle, cardType);
+        htmlNode.innerHTML = allGifos(gifoURL, gifoUser, gifoTitle, cardType, index);
+        htmlNode.querySelectorAll('.card-button').forEach((button) => button.addEventListener('click', cardButtonAction));
     });
 };
 /**
@@ -19,8 +20,8 @@ function makeGifosCards(gifosInfo, htmlNode, cardType) {
  * @param string 
  * @returns string
  */
-const allGifos = ((gifoURL, gifoUser, gifoTitle, cardType) => {
-    allGifosCards += cardMarkup(gifoURL, gifoUser, gifoTitle, cardType);
+const allGifos = ((gifoURL, gifoUser, gifoTitle, cardType, index) => {
+    allGifosCards += cardMarkup(gifoURL, gifoUser, gifoTitle, cardType, index);
     return allGifosCards;
 });
 /**
@@ -29,14 +30,14 @@ const allGifos = ((gifoURL, gifoUser, gifoTitle, cardType) => {
  * @param string 
  * @returns string
  */
-const cardMarkup = ((url, user, title, cardType) => {
+const cardMarkup = ((url, user, title, cardType, index) => {
     const cardContent = `
-        <img class="gifos-container-card__img" src=${url} alt="Gifo">
+        <img class="gifos-container-card__img" src="${url}" alt="Gifo">
         <div class="overlay">
             <div class="gifos-container-card__buttons">
-                <button class="card-button" type="button"><i class="icon-icon-fav-hover"></i></button>
-                <button class="card-button" type="button"><i class="icon-icon-download"></i></button>
-                <button class="card-button" type="button"><i class="icon-icon-max"></i></button>
+                <button class="card-button" data-type="favorite" data-url="${url}" type="button"><i class="icon-icon-fav-hover"></i></button>
+                <button class="card-button" data-type="download" data-url="${url}" data-name="${title}" type="button"><i class="icon-icon-download"></i></button>
+                <button class="card-button" data-type="maximize" data-url="${url}" data-index="${index}" type="button"><i class="icon-icon-max"></i></button>
             </div>
             <div class="gifos-container-card__info">
                 <p class="card__user">${user}</p>
@@ -54,6 +55,46 @@ const cardMarkup = ((url, user, title, cardType) => {
         );
     }
 });
+
+/**
+ * @method cardButtonAction
+ * @description select function to be executed accordint to button type
+ * @param object event information 
+ */
+function cardButtonAction(e) {
+    const gifoURL = e.currentTarget.getAttribute('data-url');
+    const gifoName = e.currentTarget.getAttribute('data-name');
+    switch (e.currentTarget.getAttribute('data-type')) {
+        case "favorite":
+            alert(gifoURL);
+            break;
+        case "download":
+            downloadGifo(gifoURL, gifoName);
+            break;
+        case "maximize":
+            alert(gifoURL);
+            break;
+        default:
+            break;
+    }
+}
+/**
+ * @method downloadGifo
+ * @description Download Gifo
+ * @param string URL
+ */
+async function downloadGifo(gifoURL, gifoName) {
+    let fetchResponse = await fetch(gifoURL);
+    let blobObject = await fetchResponse.blob();
+    let imgURL = URL.createObjectURL(blobObject);
+    const saveGif = document.createElement("a")
+    saveGif.href = imgURL; // Asigna url
+    saveGif.download = `${gifoName}.gif`; // Elije un filename aleatorio
+    document.body.appendChild(saveGif);
+    saveGif.click();
+    document.body.removeChild(saveGif);
+}
+
 
 export {
 

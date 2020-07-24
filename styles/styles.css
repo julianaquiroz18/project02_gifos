@@ -110,6 +110,10 @@ button {
   scroll-behavior: smooth;
 }
 
+button {
+  cursor: pointer;
+}
+
 .gifos-wrapper {
   display: -ms-grid;
   display: grid;
@@ -336,6 +340,10 @@ button {
   font-family: “ProximaNova-Regular”;
   color: #572EE5;
   scroll-behavior: smooth;
+}
+
+button {
+  cursor: pointer;
 }
 
 .navigation-bar {
@@ -851,6 +859,10 @@ button {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.social-media__icons a {
+  text-decoration: none;
   color: #cdd6e0;
 }
 

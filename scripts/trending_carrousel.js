@@ -26,6 +26,7 @@ right.addEventListener('click', () => { scroll(RIGHT) });
 const trendingGifosData = apiRequest(trendingGifosURL);
 trendingGifosData.then((response) => {
     const htmlNode = document.querySelector(".gifos-carrousel");
+    window.trendingGifosInfo = response.data;
     makeGifosCards(response, htmlNode, "trending_type");
 }).catch((error) => { console.log(error) });
 

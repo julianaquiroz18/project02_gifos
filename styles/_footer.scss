@@ -16,7 +16,10 @@
     font-size: 20px;
     display: flex;
     justify-content: space-between;
-    color: #cdd6e0;
+    & a {
+        text-decoration: none;
+        color: #cdd6e0;
+    }
 }
 
 .copy-rights {
