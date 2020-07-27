@@ -13,6 +13,7 @@ const searchBarBtn = document.querySelector(".search-bar__button");
 const searchClose = document.querySelector(".active-search__close");
 const suggestionsBlock = document.querySelector(".active-search__suggestions-list");
 const searchInput = document.querySelector(".search-bar__input");
+
 const searchBarState = {
     INITIAL: "initial",
     WITH_SUGGESTIONS: "with_suggestions",
@@ -177,3 +178,9 @@ function requestGifos() {
 
     }).catch((error) => { console.log(error) });
 }
+
+
+export {
+
+    listenSelectedSuggestion
+};

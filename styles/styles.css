@@ -737,6 +737,19 @@ button {
   font-family: “ProximaNova-Bold”;
 }
 
+.trending-topics__item {
+  display: inline;
+}
+
+.trending-topics__item:nth-child(-n+4)::after {
+  content: ", ";
+}
+
+.trending-topics__item a {
+  text-decoration: none;
+  color: #572EE5;
+}
+
 .trending-box {
   background-color: #F3F5F8;
   text-align: center;

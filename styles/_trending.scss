@@ -10,6 +10,16 @@
     &__title {
         @include bold;
     }
+    &__item {
+        display: inline;
+        &:nth-child(-n+4)::after {
+            content: ", ";
+        }
+        & a {
+            text-decoration: none;
+            color: $purple;
+        }
+    }
 }
 
 .trending-box {

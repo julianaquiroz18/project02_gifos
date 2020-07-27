@@ -36,7 +36,7 @@ const cardMarkup = ((url, user, title, cardType, index) => {
         <div class="overlay">
             <div class="gifos-container-card__buttons">
                 <button class="card-button" data-type="favorite" data-url="${url}" type="button"><i class="icon-icon-fav-hover"></i></button>
-                <button class="card-button" data-type="download" data-url="${url}" data-name="${title}" type="button"><i class="icon-icon-download"></i></button>
+                <button class="card-button" data-type="download" data-url="${url}" data-title="${title}" type="button"><i class="icon-icon-download"></i></button>
                 <button class="card-button" data-type="maximize" data-url="${url}" data-index="${index}" type="button"><i class="icon-icon-max"></i></button>
             </div>
             <div class="gifos-container-card__info">
@@ -63,7 +63,7 @@ const cardMarkup = ((url, user, title, cardType, index) => {
  */
 function cardButtonAction(e) {
     const gifoURL = e.currentTarget.getAttribute('data-url');
-    const gifoName = e.currentTarget.getAttribute('data-name');
+    const gifoName = e.currentTarget.getAttribute('data-title');
     switch (e.currentTarget.getAttribute('data-type')) {
         case "favorite":
             alert(gifoURL);
