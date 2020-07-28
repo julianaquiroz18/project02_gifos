@@ -918,6 +918,106 @@ button {
   }
 }
 
+.modal {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 100;
+}
+
+.fullsize {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.fullsize-exit {
+  font-size: 14px;
+  width: 14px;
+  background-color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  position: relative;
+  left: 78.13333vw;
+  outline: none;
+}
+
+.fullsize-gifo {
+  width: 318px;
+  height: 249px;
+  padding: 69px 0 14px;
+}
+
+.fullsize-footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.fullsize-info-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.fullsize-user {
+  color: black;
+  font-size: 15px;
+  line-height: 15px;
+}
+
+.fullsize-title {
+  color: black;
+  font-family: “ProximaNova-Bold”;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.fullsize-btn-wrap {
+  width: 93px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.fullsize-button {
+  background-color: rgba(255, 255, 255, 0.3);
+  width: 36px;
+  height: 36px;
+  border: #9CAFC3 1px solid;
+  border-radius: 6px;
+  font-size: 18px;
+  opacity: 70%;
+  outline: none;
+}
+
 .hidden {
   display: none;
 }
