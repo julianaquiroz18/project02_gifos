@@ -944,6 +944,9 @@ button {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .fullsize-exit {
@@ -952,13 +955,13 @@ button {
   background-color: rgba(255, 255, 255, 0.9);
   cursor: pointer;
   position: relative;
-  left: 78.13333vw;
+  left: 38.66667vw;
   outline: none;
 }
 
 .fullsize-gifo {
-  width: 318px;
-  height: 249px;
+  width: 84.8vw;
+  height: auto;
   padding: 69px 0 14px;
 }
 
@@ -966,6 +969,7 @@ button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width: 100%;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -982,12 +986,13 @@ button {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  margin-right: 20px;
 }
 
 .fullsize-user {
   color: black;
   font-size: 15px;
-  line-height: 15px;
+  line-height: 18px;
 }
 
 .fullsize-title {
@@ -1016,6 +1021,27 @@ button {
   font-size: 18px;
   opacity: 70%;
   outline: none;
+}
+
+@media screen and (min-width: 768px) {
+  .fullsize-exit {
+    font-size: 15px;
+    width: 15px;
+    left: 31.25vw;
+  }
+  .fullsize-gifo {
+    width: 65.10417vw;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .fullsize-exit {
+    left: 26.875vw;
+  }
+  .fullsize-gifo {
+    width: 48.26389vw;
+    height: 385px;
+  }
 }
 
 .hidden {

@@ -12,6 +12,7 @@ function makeGifosCards(gifosInfo, htmlNode, cardType) {
         const gifoTitle = gifo.title;
         htmlNode.innerHTML = allGifos(gifoURL, gifoUser, gifoTitle, cardType, index);
         htmlNode.querySelectorAll('.card-button').forEach((button) => button.addEventListener('click', cardButtonAction));
+        htmlNode.querySelectorAll('.gifos-container-card__img').forEach((image) => image.addEventListener('click', maximizeGifoMobile));
     });
 };
 /**
@@ -32,12 +33,12 @@ const allGifos = ((gifoURL, gifoUser, gifoTitle, cardType, index) => {
  */
 const cardMarkup = ((url, user, title, cardType, index) => {
     const cardContent = `
-        <img class="gifos-container-card__img" src="${url}" alt="Gifo">
+        <img class="gifos-container-card__img" src="${url}" alt="Gifo" data-cardType="${cardType}" data-index="${index}">
         <div class="overlay">
             <div class="gifos-container-card__buttons">
-                <button class="card-button" data-type="favorite" data-url="${url}" type="button"><i class="icon-icon-fav-hover"></i></button>
+                <button class="card-button" data-type="favorite" data-url="${url}" data-user="${user}" data-title="${title}" type="button"><i class="icon-icon-fav-hover"></i></button>
                 <button class="card-button" data-type="download" data-url="${url}" data-title="${title}" type="button"><i class="icon-icon-download"></i></button>
-                <button class="card-button" data-type="maximize" data-url="${url}" data-index="${index}" type="button"><i class="icon-icon-max"></i></button>
+                <button class="card-button" data-type="maximize" data-cardType="${cardType}" data-index="${index}" type="button"><i class="icon-icon-max"></i></button>
             </div>
             <div class="gifos-container-card__info">
                 <p class="card__user">${user}</p>
@@ -63,16 +64,18 @@ const cardMarkup = ((url, user, title, cardType, index) => {
  */
 function cardButtonAction(e) {
     const gifoURL = e.currentTarget.getAttribute('data-url');
-    const gifoName = e.currentTarget.getAttribute('data-title');
+    const gifoTitle = e.currentTarget.getAttribute('data-title');
+    const gifoIndex = e.currentTarget.getAttribute('data-index');
+    const gifoCardType = e.currentTarget.getAttribute('data-cardType');
     switch (e.currentTarget.getAttribute('data-type')) {
         case "favorite":
             alert(gifoURL);
             break;
         case "download":
-            downloadGifo(gifoURL, gifoName);
+            downloadGifo(gifoURL, gifoTitle);
             break;
         case "maximize":
-            alert(gifoURL);
+            maximizeGifo(gifoCardType, gifoIndex);
             break;
         default:
             break;
@@ -83,17 +86,63 @@ function cardButtonAction(e) {
  * @description Download Gifo
  * @param string URL
  */
-async function downloadGifo(gifoURL, gifoName) {
+async function downloadGifo(gifoURL, gifoTitle) {
     let fetchResponse = await fetch(gifoURL);
     let blobObject = await fetchResponse.blob();
     let imgURL = URL.createObjectURL(blobObject);
     const saveGif = document.createElement("a")
     saveGif.href = imgURL; // Asigna url
-    saveGif.download = `${gifoName}.gif`; // Elije un filename aleatorio
+    saveGif.download = `${gifoTitle}.gif`; // Elije un filename aleatorio
     document.body.appendChild(saveGif);
     saveGif.click();
     document.body.removeChild(saveGif);
 }
+
+
+
+function maximizeGifoMobile(e) {
+    const gifoIndex = e.currentTarget.getAttribute('data-index');
+    const gifoCardType = e.currentTarget.getAttribute('data-cardType');
+    maximizeGifo(gifoCardType, gifoIndex);
+}
+/**
+ * @method maximizeGifo
+ * @description maximize Gifo
+ * @param string URL
+ */
+function maximizeGifo(gifoCardType, gifoIndex) {
+    const gifoInfo = getGifoInformation(gifoCardType, gifoIndex);
+    document.querySelector(".fullsize-gifo").src = gifoInfo[0];
+    document.querySelector(".fullsize-user").textContent = gifoInfo[1];
+    document.querySelector(".fullsize-title").textContent = gifoInfo[2];
+    document.querySelector(".fullsize-exit").addEventListener('click', toggleModal);
+    toggleModal();
+};
+
+
+function toggleModal() {
+    document.querySelector(".modal").classList.toggle("hidden");
+}
+
+function getGifoInformation(gifoCardType, gifoIndex) {
+    let gifoURL;
+    let gifoUser;
+    let gifoTitle;
+    if (gifoCardType === "trending_type") {
+        gifoURL = window.trendingGifosInfo[gifoIndex].images.original.url;
+        gifoUser = window.trendingGifosInfo[gifoIndex].username;
+        gifoTitle = window.trendingGifosInfo[gifoIndex].title;
+
+    } else {
+        gifoURL = window.searchedGifosInfo[gifoIndex].images.original.url;
+        gifoUser = window.searchedGifosInfo[gifoIndex].username;
+        gifoTitle = window.searchedGifosInfo[gifoIndex].title;
+    };
+
+    return [gifoURL, gifoUser, gifoTitle];
+
+};
+
 
 
 export {

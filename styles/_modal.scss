@@ -13,32 +13,35 @@
 .fullsize {
     display: flex;
     flex-direction: column;
+    align-items: center;
     &-exit {
         font-size: 14px;
         width: 14px;
         background-color: rgba(255, 255, 255, 0.9);
         cursor: pointer;
         position: relative;
-        left: vw(293, 375);
+        left: vw(145, 375);
         outline: none;
     }
     &-gifo {
-        width: 318px;
-        height: 249px;
+        width: vw(318, 375);
+        height: auto;
         padding: 69px 0 14px;
     }
     &-footer {
         display: flex;
+        width: 100%;
         justify-content: space-between;
     }
     &-info-wrap {
         display: flex;
         flex-direction: column;
-        justify-content: space-between
+        justify-content: space-between;
+        margin-right: 20px
     }
     &-user {
         color: black;
-        @include font(15, 15);
+        @include font(15, 18);
     }
     &-title {
         color: black;
@@ -59,5 +62,30 @@
         font-size: 18px;
         opacity: 70%;
         outline: none;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .fullsize {
+        &-exit {
+            font-size: 15px;
+            width: 15px;
+            left: vw(240, 768);
+        }
+        &-gifo {
+            width: vw(500, 768);
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .fullsize {
+        &-exit {
+            left: vw(387, 1440);
+        }
+        &-gifo {
+            width: vw(695, 1440);
+            height: 385px;
+        }
     }
 }

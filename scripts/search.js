@@ -174,6 +174,7 @@ function requestGifos() {
         }
         document.querySelector(".search-results__button").classList.remove("hidden");
         const htmlNode = document.querySelector(".gifos-wrapper");
+        window.searchedGifosInfo = response.data;
         makeGifosCards(response, htmlNode, "search_type");
 
     }).catch((error) => { console.log(error) });
