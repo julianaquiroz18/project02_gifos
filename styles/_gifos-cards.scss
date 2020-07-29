@@ -105,6 +105,9 @@
         @include font(16, 20);
         @include bold;
     }
+    .fav-active {
+        opacity: 100%;
+    }
     //Esta clase se coloca para incrementar el tamaño 
     //de la card requerida en la seccion de trending
     .trending-card {

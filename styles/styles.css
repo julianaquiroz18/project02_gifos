@@ -240,6 +240,9 @@ button {
     line-height: 20px;
     font-family: “ProximaNova-Bold”;
   }
+  .fav-active {
+    opacity: 100%;
+  }
   .trending-card {
     margin: 0 1.94444vw 0 0;
     width: 24.79167vw;
@@ -952,7 +955,7 @@ button {
 .fullsize-exit {
   font-size: 14px;
   width: 14px;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.2);
   cursor: pointer;
   position: relative;
   left: 38.66667vw;
@@ -1013,7 +1016,7 @@ button {
 }
 
 .fullsize-button {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.2);
   width: 36px;
   height: 36px;
   border: #9CAFC3 1px solid;

@@ -1,5 +1,7 @@
 let allGifosCards;
-document.querySelector(".fullsize-exit").addEventListener('click', toggleModal);
+const LOCAL_STORAGE_FAVORITES = "Favorite Gifos";
+
+
 /**
  * @method makeGifosCards
  * @description Get gifos data and create cards
@@ -13,7 +15,7 @@ function makeGifosCards(gifosInfo, htmlNode, cardType) {
         const gifoTitle = gifo.title;
         htmlNode.innerHTML = allGifos(gifoURL, gifoUser, gifoTitle, cardType, index);
         htmlNode.querySelectorAll('.card-button').forEach((button) => button.addEventListener('click', cardButtonAction));
-        htmlNode.querySelectorAll('.gifos-container-card__img').forEach((image) => image.addEventListener('click', maximizeGifoMobile));
+        //htmlNode.querySelectorAll('.gifos-container-card__img').forEach((image) => image.addEventListener('click', cardButtonAction));
     });
 };
 /**
@@ -34,10 +36,11 @@ const allGifos = ((gifoURL, gifoUser, gifoTitle, cardType, index) => {
  */
 const cardMarkup = ((url, user, title, cardType, index) => {
     const cardContent = `
-        <img class="gifos-container-card__img" src="${url}" alt="Gifo" data-cardType="${cardType}" data-index="${index}">
+        <img class="gifos-container-card__img" src="${url}" alt="Gifo" data-type="maximize" data-cardType="${cardType}" data-index="${index}">
         <div class="overlay">
             <div class="gifos-container-card__buttons">
-                <button class="card-button" data-type="favorite" data-cardType="${cardType}" data-index="${index}" type="button"><i class="icon-icon-fav-hover"></i></button>
+                <button class="card-button fav-hover" data-type="add-favorite" data-cardType="${cardType}" data-index="${index}" type="button"><i class="icon-icon-fav-hover"></i></i></button>
+                <button class="card-button fav-active hidden" data-type="remove-favorite" data-cardType="${cardType}" data-index="${index}" type="button"><i class="icon-icon-fav-active"></i></button>
                 <button class="card-button" data-type="download" data-cardType="${cardType}" data-index="${index}" type="button"><i class="icon-icon-download"></i></button>
                 <button class="card-button" data-type="maximize" data-cardType="${cardType}" data-index="${index}" type="button"><i class="icon-icon-max"></i></button>
             </div>
@@ -55,7 +58,7 @@ const cardMarkup = ((url, user, title, cardType, index) => {
         return (
             `<div class="gifos-container-card">${cardContent}</div>`
         );
-    }
+    };
 });
 
 /**
@@ -66,68 +69,34 @@ const cardMarkup = ((url, user, title, cardType, index) => {
 function cardButtonAction(e) {
     const gifoIndex = e.currentTarget.getAttribute('data-index');
     const gifoCardType = e.currentTarget.getAttribute('data-cardType');
+    const gifoInfo = getGifoInformation(gifoCardType, gifoIndex);
     switch (e.currentTarget.getAttribute('data-type')) {
-        case "favorite":
-            alert(gifoURL);
+        case "add-favorite":
+            toggleFav(gifoIndex);
+            addfavoriteGifo(gifoCardType, gifoIndex);
+            break;
+        case "remove-favorite":
+            toggleFav(gifoIndex);
+            removeFavoriteGifo(gifoCardType, gifoIndex);
             break;
         case "download":
-            const gifoInfo = getGifoInformation(gifoCardType, gifoIndex);
             downloadGifo(gifoInfo);
             break;
         case "maximize":
-            maximizeGifo(gifoCardType, gifoIndex);
+            maximizeGifo(gifoInfo);
+            maximizeButtonsConf(gifoCardType, gifoIndex);
             break;
         default:
             break;
-    }
-}
-/**
- * @method downloadGifo
- * @description Download Gifo
- * @param string URL
- */
-async function downloadGifo(gifoInfo) {
-    let fetchResponse = await fetch(gifoInfo[0]);
-    let blobObject = await fetchResponse.blob();
-    let imgURL = URL.createObjectURL(blobObject);
-    const saveGif = document.createElement("a")
-    saveGif.href = imgURL; // Asigna url
-    saveGif.download = `${gifoInfo[2]}.gif`; // Elije un filename aleatorio
-    document.body.appendChild(saveGif);
-    saveGif.click();
-    document.body.removeChild(saveGif);
-}
-
-
-function maximizeGifoMobile(e) {
-    const gifoIndex = e.currentTarget.getAttribute('data-index');
-    const gifoCardType = e.currentTarget.getAttribute('data-cardType');
-    maximizeGifo(gifoCardType, gifoIndex);
-}
-/**
- * @method maximizeGifo
- * @description maximize Gifo
- * @param string URL
- */
-function maximizeGifo(gifoCardType, gifoIndex) {
-    const gifoInfo = getGifoInformation(gifoCardType, gifoIndex);
-    document.querySelector(".fullsize-gifo").src = gifoInfo[0];
-    document.querySelector(".fullsize-user").textContent = gifoInfo[1];
-    document.querySelector(".fullsize-title").textContent = gifoInfo[2];
-    const fullsizeButtons = document.querySelectorAll(".fullsize-button");
-    fullsizeButtons.forEach(button => {
-        button.setAttribute("data-cardType", gifoCardType);
-        button.setAttribute("data-index", gifoIndex);
-        button.addEventListener('click', cardButtonAction);
-    });
-    toggleModal();
+    };
 };
 
-
-function toggleModal() {
-    document.querySelector(".modal").classList.toggle("hidden");
-}
-
+/**
+ * @method getGifoInformation
+ * @description Get Gifo information to asign inside modal
+ * @param string 
+ * @returns [array]
+ */
 function getGifoInformation(gifoCardType, gifoIndex) {
     let gifoURL;
     let gifoUser;
@@ -147,7 +116,98 @@ function getGifoInformation(gifoCardType, gifoIndex) {
 
 };
 
+/**
+ * @method addfavoriteGifo
+ * @description Add Gifo Information to an array in localStorage
+ * @param string 
+ */
+function addfavoriteGifo(gifoCardType, gifoIndex) {
+    let favoriteGifosSelected = JSON.parse(localStorage.getItem(LOCAL_STORAGE_FAVORITES)) || [];
+    if (gifoCardType === "trending_type") {
+        favoriteGifosSelected.push(window.trendingGifosInfo[gifoIndex]);
+    } else {
+        favoriteGifosSelected.push(window.searchedGifosInfo[gifoIndex]);
+    };
+    localStorage.setItem(LOCAL_STORAGE_FAVORITES, JSON.stringify(favoriteGifosSelected));
+};
 
+/**
+ * @method removeFavoriteGifo
+ * @description Remove Gifo Information from array in localStorage
+ * @param string 
+ */
+function removeFavoriteGifo(gifoCardType, gifoIndex) {
+    let favoriteGifosSelected = JSON.parse(localStorage.getItem(LOCAL_STORAGE_FAVORITES)) || [];
+    let gifoId;
+    let favoriteIndex;
+    if (gifoCardType === "trending_type") {
+        gifoId = window.trendingGifosInfo[gifoIndex].id;
+    } else {
+        gifoId = window.searchedGifosInfo[gifoIndex].id;
+    };
+    favoriteGifosSelected.forEach((gifoInfo, index) => {
+        if (gifoInfo.id == gifoId) {
+            favoriteIndex = index;
+        };
+    });
+    favoriteGifosSelected.splice(favoriteIndex, 1);
+    localStorage.setItem(LOCAL_STORAGE_FAVORITES, JSON.stringify(favoriteGifosSelected));
+};
+
+function toggleFav(gifoIndex) {
+    const addFavorite = document.getElementsByClassName("fav-hover");
+    const removeFavorite = document.getElementsByClassName("fav-active");
+    addFavorite[gifoIndex].classList.toggle("hidden");
+    removeFavorite[gifoIndex].classList.toggle("hidden");
+};
+
+/**
+ * @method downloadGifo
+ * @description Download Gifo
+ * @param array
+ */
+async function downloadGifo(gifoInfo) {
+    let fetchResponse = await fetch(gifoInfo[0]);
+    let blobObject = await fetchResponse.blob();
+    let imgURL = URL.createObjectURL(blobObject);
+    const saveGif = document.createElement("a")
+    saveGif.href = imgURL;
+    saveGif.download = `${gifoInfo[2]}.gif`;
+    document.body.appendChild(saveGif);
+    saveGif.click();
+    document.body.removeChild(saveGif);
+};
+
+/**
+ * @method maximizeGifo
+ * @description maximize Gifo
+ * @param array
+ */
+function maximizeGifo(gifoInfo) {
+    document.querySelector(".fullsize-gifo").src = gifoInfo[0];
+    document.querySelector(".fullsize-user").textContent = gifoInfo[1];
+    document.querySelector(".fullsize-title").textContent = gifoInfo[2];
+    toggleModal();
+};
+
+function toggleModal() {
+    document.querySelector(".modal").classList.toggle("hidden");
+};
+
+/**
+ * @method maximizeButtonsConf
+ * @description including data information and event listener to modal buttons
+ * @param string
+ */
+function maximizeButtonsConf(gifoCardType, gifoIndex) {
+    document.querySelector(".fullsize-exit").addEventListener('click', toggleModal);
+    const fullsizeButtons = document.querySelectorAll(".fullsize-button");
+    fullsizeButtons.forEach(button => {
+        button.setAttribute("data-cardType", gifoCardType);
+        button.setAttribute("data-index", gifoIndex);
+        button.addEventListener('click', cardButtonAction);
+    });
+};
 
 export {
 

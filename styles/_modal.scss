@@ -17,7 +17,7 @@
     &-exit {
         font-size: 14px;
         width: 14px;
-        background-color: rgba(255, 255, 255, 0.9);
+        background-color: rgba(255, 255, 255, 0.2);
         cursor: pointer;
         position: relative;
         left: vw(145, 375);
@@ -54,7 +54,7 @@
         justify-content: space-between
     }
     &-button {
-        background-color: rgba(255, 255, 255, 0.3);
+        background-color: rgba(255, 255, 255, 0.2);
         width: 36px;
         height: 36px;
         border: $gray-line 1px solid;
