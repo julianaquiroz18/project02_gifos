@@ -1,4 +1,5 @@
 let allGifosCards;
+document.querySelector(".fullsize-exit").addEventListener('click', toggleModal);
 /**
  * @method makeGifosCards
  * @description Get gifos data and create cards
@@ -36,8 +37,8 @@ const cardMarkup = ((url, user, title, cardType, index) => {
         <img class="gifos-container-card__img" src="${url}" alt="Gifo" data-cardType="${cardType}" data-index="${index}">
         <div class="overlay">
             <div class="gifos-container-card__buttons">
-                <button class="card-button" data-type="favorite" data-url="${url}" data-user="${user}" data-title="${title}" type="button"><i class="icon-icon-fav-hover"></i></button>
-                <button class="card-button" data-type="download" data-url="${url}" data-title="${title}" type="button"><i class="icon-icon-download"></i></button>
+                <button class="card-button" data-type="favorite" data-cardType="${cardType}" data-index="${index}" type="button"><i class="icon-icon-fav-hover"></i></button>
+                <button class="card-button" data-type="download" data-cardType="${cardType}" data-index="${index}" type="button"><i class="icon-icon-download"></i></button>
                 <button class="card-button" data-type="maximize" data-cardType="${cardType}" data-index="${index}" type="button"><i class="icon-icon-max"></i></button>
             </div>
             <div class="gifos-container-card__info">
@@ -63,8 +64,6 @@ const cardMarkup = ((url, user, title, cardType, index) => {
  * @param object event information 
  */
 function cardButtonAction(e) {
-    const gifoURL = e.currentTarget.getAttribute('data-url');
-    const gifoTitle = e.currentTarget.getAttribute('data-title');
     const gifoIndex = e.currentTarget.getAttribute('data-index');
     const gifoCardType = e.currentTarget.getAttribute('data-cardType');
     switch (e.currentTarget.getAttribute('data-type')) {
@@ -72,7 +71,8 @@ function cardButtonAction(e) {
             alert(gifoURL);
             break;
         case "download":
-            downloadGifo(gifoURL, gifoTitle);
+            const gifoInfo = getGifoInformation(gifoCardType, gifoIndex);
+            downloadGifo(gifoInfo);
             break;
         case "maximize":
             maximizeGifo(gifoCardType, gifoIndex);
@@ -86,18 +86,17 @@ function cardButtonAction(e) {
  * @description Download Gifo
  * @param string URL
  */
-async function downloadGifo(gifoURL, gifoTitle) {
-    let fetchResponse = await fetch(gifoURL);
+async function downloadGifo(gifoInfo) {
+    let fetchResponse = await fetch(gifoInfo[0]);
     let blobObject = await fetchResponse.blob();
     let imgURL = URL.createObjectURL(blobObject);
     const saveGif = document.createElement("a")
     saveGif.href = imgURL; // Asigna url
-    saveGif.download = `${gifoTitle}.gif`; // Elije un filename aleatorio
+    saveGif.download = `${gifoInfo[2]}.gif`; // Elije un filename aleatorio
     document.body.appendChild(saveGif);
     saveGif.click();
     document.body.removeChild(saveGif);
 }
-
 
 
 function maximizeGifoMobile(e) {
@@ -115,7 +114,12 @@ function maximizeGifo(gifoCardType, gifoIndex) {
     document.querySelector(".fullsize-gifo").src = gifoInfo[0];
     document.querySelector(".fullsize-user").textContent = gifoInfo[1];
     document.querySelector(".fullsize-title").textContent = gifoInfo[2];
-    document.querySelector(".fullsize-exit").addEventListener('click', toggleModal);
+    const fullsizeButtons = document.querySelectorAll(".fullsize-button");
+    fullsizeButtons.forEach(button => {
+        button.setAttribute("data-cardType", gifoCardType);
+        button.setAttribute("data-index", gifoIndex);
+        button.addEventListener('click', cardButtonAction);
+    });
     toggleModal();
 };
 
