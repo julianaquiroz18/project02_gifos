@@ -30,7 +30,7 @@
     }
     &-footer {
         display: flex;
-        width: 100%;
+        width: vw(318, 375);
         justify-content: space-between;
     }
     &-info-wrap {
@@ -62,6 +62,10 @@
         font-size: 18px;
         opacity: 70%;
         outline: none;
+        &:hover {
+            opacity: 100%;
+            background-color: white;
+        }
     }
 }
 
@@ -74,6 +78,9 @@
         }
         &-gifo {
             width: vw(500, 768);
+        }
+        &-footer {
+            width: 100%;
         }
     }
 }

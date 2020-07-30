@@ -973,7 +973,7 @@ button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 100%;
+  width: 84.8vw;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -1027,6 +1027,11 @@ button {
   outline: none;
 }
 
+.fullsize-button:hover {
+  opacity: 100%;
+  background-color: white;
+}
+
 @media screen and (min-width: 768px) {
   .fullsize-exit {
     font-size: 15px;
@@ -1035,6 +1040,9 @@ button {
   }
   .fullsize-gifo {
     width: 65.10417vw;
+  }
+  .fullsize-footer {
+    width: 100%;
   }
 }
 
