@@ -1,15 +1,15 @@
 let allGifosCards;
 const LOCAL_STORAGE_FAVORITES = "Favorite Gifos";
-
+//localStorage.clear();
 
 /**
  * @method makeGifosCards
  * @description Get gifos data and create cards
- * @param array gifos
+ * @param {array} gifosInfo
  */
 function makeGifosCards(gifosInfo, htmlNode, cardType) {
     allGifosCards = "";
-    gifosInfo.data.forEach((gifo, index) => {
+    gifosInfo.forEach((gifo, index) => {
         const gifoURL = gifo.images.original.url;
         const gifoUser = gifo.username;
         const gifoTitle = gifo.title;
@@ -21,8 +21,8 @@ function makeGifosCards(gifosInfo, htmlNode, cardType) {
 /**
  * @method allGifos
  * @description create all Gifos Cards HTML
- * @param string 
- * @returns string
+ * @param {string} 
+ * @returns {string}
  */
 const allGifos = ((gifoURL, gifoUser, gifoTitle, cardType, index) => {
     allGifosCards += cardMarkup(gifoURL, gifoUser, gifoTitle, cardType, index);
@@ -31,8 +31,8 @@ const allGifos = ((gifoURL, gifoUser, gifoTitle, cardType, index) => {
 /**
  * @method cardMarkup
  * @description Card marking method
- * @param string 
- * @returns string
+ * @param {string} 
+ * @returns {string}
  */
 const cardMarkup = ((url, user, title, cardType, index) => {
     const cardContent = `
@@ -64,7 +64,7 @@ const cardMarkup = ((url, user, title, cardType, index) => {
 /**
  * @method cardButtonAction
  * @description select function to be executed accordint to button type
- * @param object event information 
+ * @param {object} e event information 
  */
 function cardButtonAction(e) {
     const gifoIndex = e.currentTarget.getAttribute('data-index');
@@ -72,11 +72,11 @@ function cardButtonAction(e) {
     const gifoInfo = getGifoInformation(gifoCardType, gifoIndex);
     switch (e.currentTarget.getAttribute('data-type')) {
         case "add-favorite":
-            toggleFav(gifoIndex);
+            toggleFav(gifoCardType, gifoIndex);
             addfavoriteGifo(gifoCardType, gifoIndex);
             break;
         case "remove-favorite":
-            toggleFav(gifoIndex);
+            toggleFav(gifoCardType, gifoIndex);
             removeFavoriteGifo(gifoCardType, gifoIndex);
             break;
         case "download":
@@ -94,8 +94,8 @@ function cardButtonAction(e) {
 /**
  * @method getGifoInformation
  * @description Get Gifo information to asign inside modal
- * @param string 
- * @returns [array]
+ * @param {string}
+ * @returns {array}
  */
 function getGifoInformation(gifoCardType, gifoIndex) {
     let gifoURL;
@@ -119,7 +119,7 @@ function getGifoInformation(gifoCardType, gifoIndex) {
 /**
  * @method addfavoriteGifo
  * @description Add Gifo Information to an array in localStorage
- * @param string 
+ * @param {string} 
  */
 function addfavoriteGifo(gifoCardType, gifoIndex) {
     let favoriteGifosSelected = JSON.parse(localStorage.getItem(LOCAL_STORAGE_FAVORITES)) || [];
@@ -134,7 +134,7 @@ function addfavoriteGifo(gifoCardType, gifoIndex) {
 /**
  * @method removeFavoriteGifo
  * @description Remove Gifo Information from array in localStorage
- * @param string 
+ * @param {string} 
  */
 function removeFavoriteGifo(gifoCardType, gifoIndex) {
     let favoriteGifosSelected = JSON.parse(localStorage.getItem(LOCAL_STORAGE_FAVORITES)) || [];
@@ -154,9 +154,15 @@ function removeFavoriteGifo(gifoCardType, gifoIndex) {
     localStorage.setItem(LOCAL_STORAGE_FAVORITES, JSON.stringify(favoriteGifosSelected));
 };
 
-function toggleFav(gifoIndex) {
-    const addFavorite = document.getElementsByClassName("fav-hover");
-    const removeFavorite = document.getElementsByClassName("fav-active");
+function toggleFav(gifoCardType, gifoIndex) {
+    let gifosWrap;
+    if (gifoCardType === "trending_type") {
+        gifosWrap = document.querySelector(".gifos-carrousel");
+    } else {
+        gifosWrap = document.querySelector(".gifos-wrapper");
+    };
+    const addFavorite = gifosWrap.getElementsByClassName("fav-hover");
+    const removeFavorite = gifosWrap.getElementsByClassName("fav-active");
     addFavorite[gifoIndex].classList.toggle("hidden");
     removeFavorite[gifoIndex].classList.toggle("hidden");
 };
@@ -164,7 +170,7 @@ function toggleFav(gifoIndex) {
 /**
  * @method downloadGifo
  * @description Download Gifo
- * @param array
+ * @param {array} gifoInfo
  */
 async function downloadGifo(gifoInfo) {
     let fetchResponse = await fetch(gifoInfo[0]);
@@ -181,7 +187,7 @@ async function downloadGifo(gifoInfo) {
 /**
  * @method maximizeGifo
  * @description maximize Gifo
- * @param array
+ * @param {array} gifoInfo
  */
 function maximizeGifo(gifoInfo) {
     document.querySelector(".fullsize-gifo").src = gifoInfo[0];
@@ -197,7 +203,7 @@ function toggleModal() {
 /**
  * @method maximizeButtonsConf
  * @description including data information and event listener to modal buttons
- * @param string
+ * @param {string}
  */
 function maximizeButtonsConf(gifoCardType, gifoIndex) {
     document.querySelector(".fullsize-exit").addEventListener('click', toggleModal);
@@ -208,6 +214,7 @@ function maximizeButtonsConf(gifoCardType, gifoIndex) {
         button.addEventListener('click', cardButtonAction);
     });
 };
+
 
 export {
 

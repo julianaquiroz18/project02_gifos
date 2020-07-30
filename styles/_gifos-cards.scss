@@ -21,14 +21,14 @@
     }
 }
 
-//Esta clase se coloca para incrementar el tamaño 
-//de la card requerida en la seccion de trending
+//CCS to increase card size in trending section
 .trending-card {
     margin-left: 22px;
     width: 243px;
     height: 187px;
 }
 
+//End
 @media screen and (min-width: 768px) {
     .gifos-container-card {
         width: vw( 214, 768);
@@ -108,8 +108,7 @@
     .fav-active {
         opacity: 100%;
     }
-    //Esta clase se coloca para incrementar el tamaño 
-    //de la card requerida en la seccion de trending
+    //CCS to increase card size in trending section
     .trending-card {
         margin: 0 vw(28, 1440) 0 0;
         width: vw(357, 1440);

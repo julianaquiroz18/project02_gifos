@@ -21,19 +21,19 @@ right.addEventListener('click', () => { scroll(RIGHT) });
 /**
  * @method trendingGifosData
  * @description get trending gifod data
- * @param string URL
+ * @param {string} URL
  */
 const trendingGifosData = apiRequest(trendingGifosURL);
 trendingGifosData.then((response) => {
     const htmlNode = document.querySelector(".gifos-carrousel");
     window.trendingGifosInfo = response.data;
-    makeGifosCards(response, htmlNode, "trending_type");
+    makeGifosCards(response.data, htmlNode, "trending_type");
 }).catch((error) => { console.log(error) });
 
 /**
  * @method scroll
  * @description Give movement to Gifos Carrousel
- * @param string Scroll direction
+ * @param {string} direction
  */
 function scroll(direction) {
     let scrollAmount = 0;

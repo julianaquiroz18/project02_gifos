@@ -46,76 +46,39 @@
             <button class="trending-box__button trending-box__button-left" type="button"><i class="icon-button-left"></i></button>
             <button class="trending-box__button trending-box__button-right" type="button"><i class="icon-button-right"></i></button>
             <div class="gifos-carrousel">
-                <div class="gifos-container-card trending-card">
-                    <img class="gifos-container-card__img" src="https://lorempixel.com/output/cats-q-c-357-274-10.jpg" alt="Gifo">
-                    <div class="overlay">
-                        <div class="gifos-container-card__buttons">
-                            <button class="card-button" type="button"><i class="icon-icon-fav-hover"></i></button>
-                            <button class="card-button" type="button"><i class="icon-icon-download"></i></button>
-                            <button class="card-button" type="button"><i class="icon-icon-max"></i></button>
-                        </div>
-                        <div class="gifos-container-card__info">
-                            <p class="card__user">User</p>
-                            <p class="card__title">Titulo GIFO</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="gifos-container-card trending-card">
-                    <img class="gifos-container-card__img" src="https://lorempixel.com/output/cats-q-c-357-274-10.jpg" alt="Gifo">
-                    <div class="overlay">
-                        <div class="gifos-container-card__buttons">
-                            <button class="card-button" type="button"><i class="icon-icon-fav-hover"></i></button>
-                            <button class="card-button" type="button"><i class="icon-icon-download"></i></button>
-                            <button class="card-button" type="button"><i class="icon-icon-max"></i></button>
-                        </div>
-                        <div class="gifos-container-card__info">
-                            <p class="card__user">User</p>
-                            <p class="card__title">Titulo GIFO</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="gifos-container-card trending-card">
-                    <img class="gifos-container-card__img" src="https://lorempixel.com/output/cats-q-c-357-274-10.jpg" alt="Gifo">
-                    <div class="overlay">
-                        <div class="gifos-container-card__buttons">
-                            <button class="card-button" type="button"><i class="icon-icon-fav-hover"></i></button>
-                            <button class="card-button" type="button"><i class="icon-icon-download"></i></button>
-                            <button class="card-button" type="button"><i class="icon-icon-max"></i></button>
-                        </div>
-                        <div class="gifos-container-card__info">
-                            <p class="card__user">User</p>
-                            <p class="card__title">Titulo GIFO</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="gifos-container-card trending-card">
-                    <img class="gifos-container-card__img" src="https://lorempixel.com/output/cats-q-c-357-274-10.jpg" alt="Gifo">
-                    <div class="overlay">
-                        <div class="gifos-container-card__buttons">
-                            <button class="card-button" type="button"><i class="icon-icon-fav-hover"></i></button>
-                            <button class="card-button" type="button"><i class="icon-icon-download"></i></button>
-                            <button class="card-button" type="button"><i class="icon-icon-max"></i></button>
-                        </div>
-                        <div class="gifos-container-card__info">
-                            <p class="card__user">User</p>
-                            <p class="card__title">Titulo GIFO</p>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </section>
         <footer class="footer">
             <div class="social-media">
                 <p class="social-media__share">Compartir en:</p>
                 <div class="social-media__icons">
-                    <i class="icon-icon_facebook"></i>
-                    <i class="icon-icon-twitter"></i>
-                    <i class="icon-icon_instagram"></i>
+                    <a href="https://www.facebook.com/"><i class="icon-icon_facebook"></i></a>
+                    <a href="https://twitter.com/"><i class="icon-icon-twitter"></i></a>
+                    <a href="https://www.instagram.com/"><i class="icon-icon_instagram"></i></a>
                 </div>
             </div>
             <p class="copy-rights">© GIFOS 2020 All Rights Reserved.</p>
         </footer>
+        <div class="modal hidden">
+            <div class="fullsize">
+                <button class="fullsize-exit"><i class="icon-button-close"></i></button>
+                <img class="fullsize-gifo" src="https://lorempixel.com/output/people-q-c-318-249-2.jpg" alt="Gifo Fullsize">
+                <div class="fullsize-footer">
+                    <div class="fullsize-info-wrap">
+                        <p class="fullsize-user">User</p>
+                        <p class="fullsize-title">title</p>
+                    </div>
+                    <div class="fullsize-btn-wrap">
+                        <button class="fullsize-button" data-type="favorite" type="button"><i class="icon-icon-fav-hover"></i></button>
+                        <button class="fullsize-button" data-type="download" type="button"><i class="icon-icon-download"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
+    <script type="module" src="./scripts/trending_carrousel.js"></script>
+    <script type="module" src="./scripts/search.js"></script>
 </body>
 
 </html>

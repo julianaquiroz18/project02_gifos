@@ -56,7 +56,6 @@ function listenInputKeyEvent(e) {
 /**
  * @method requestSuggestions
  * @description Method to request suggestions to API
- * @param string 
  */
 function requestSuggestions() {
     const autoCompleteData = autoCompleteRequest(autoCompleteURL, searchInput.value);
@@ -175,7 +174,7 @@ function requestGifos() {
         document.querySelector(".search-results__button").classList.remove("hidden");
         const htmlNode = document.querySelector(".gifos-wrapper");
         window.searchedGifosInfo = response.data;
-        makeGifosCards(response, htmlNode, "search_type");
+        makeGifosCards(response.data, htmlNode, "search_type");
 
     }).catch((error) => { console.log(error) });
 }

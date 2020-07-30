@@ -4,7 +4,7 @@ const suggestionsBlock = document.querySelector(".active-search__suggestions-lis
 /**
  * @method displaySuggestions
  * @description Get suggestion info
- * @param array Suggestion list
+ * @param {array} suggestions list
  */
 function displaySuggestions(suggestions) {
     if (suggestions.length) {
@@ -19,8 +19,8 @@ function displaySuggestions(suggestions) {
 /**
  * @method suggestionMarkUp
  * @description Suggestion marking method
- * @param string 
- * @returns string
+ * @param {string} suggestion
+ * @returns {string}
  */
 const suggestionMarkUp = ((suggestion) => {
     return (

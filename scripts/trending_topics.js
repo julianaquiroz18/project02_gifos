@@ -12,7 +12,7 @@ let allTrengingTopics = "";
 /**
  * @method trendingTopicsData
  * @description get trending topics data
- * @param string URL
+ * @param {string} URL
  */
 const trendingTopicsData = apiRequest(trendingTopicsURL);
 trendingTopicsData.then((response) => {
@@ -23,7 +23,7 @@ trendingTopicsData.then((response) => {
 /**
  * @method topicsToLink
  * @description Convert trending topics array to links
- * @param {array} 
+ * @param {array} array
  */
 const topicsToLink = (array => {
     array.forEach(topic => {
@@ -36,8 +36,8 @@ const topicsToLink = (array => {
 /**
  * @method topicsMarkup
  * @description Links making method
- * @param string 
- * @returns string
+ * @param {string} topic
+ * @returns {string}
  */
 const topicsMarkup = (topic => {
     return (`<li class="trending-topics__item"><a class="prueba" href="#search_bar">${capitalizeFirstLetter(topic)}</a></li>`);

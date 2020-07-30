@@ -673,6 +673,7 @@ button {
   border: 1px solid #572EE5;
   background-color: white;
   color: #572EE5;
+  outline: none;
   font-family: “ProximaNova-Bold”;
   font-size: 13px;
   line-height: 16px;
