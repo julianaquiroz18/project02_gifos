@@ -1,5 +1,6 @@
 import { cardButtonAction, checkFavorite } from './card-buttons-actions.js';
 
+
 /**
  * @method makeGifosCards
  * @description Get gifos data and create cards
@@ -17,7 +18,15 @@ function makeGifosCards(gifosInfo, htmlNode, cardType, page = 0) {
     htmlNode.innerHTML += gifosHTML.join("\n");
     htmlNode.querySelectorAll('.card-button').forEach((button) => button.addEventListener('click', cardButtonAction));
     htmlNode.querySelectorAll('.gifos-container-card__img').forEach((image) => image.addEventListener('click', cardButtonAction));
+    //const carrousel = document.querySelector(".gifos-carrousel");
+    //carrousel.querySelectorAll("button.fav-active, button.fav-hover").forEach(node => node.addEventListener('click', drawFavorites));
 };
+
+function prueba() {
+    console.log("entra");
+};
+
+
 
 /**
  * @method cardMarkup
@@ -33,7 +42,7 @@ const cardMarkup = ((url, user, title, cardType, index, isFavorite) => {
                 <button class="card-button fav-hover ${isFavorite?'hidden':''}" data-type="add-favorite" data-cardType="${cardType}" data-index="${index}" type="button"><i class="icon-icon-fav-hover"></i></i></button>
                 <button class="card-button fav-active ${isFavorite?'':'hidden'}" data-type="remove-favorite" data-cardType="${cardType}" data-index="${index}" type="button"><i class="icon-icon-fav-active"></i></button>
                 <button class="card-button" data-type="download" data-cardType="${cardType}" data-index="${index}" type="button"><i class="icon-icon-download"></i></button>
-                <button class="card-button" data-type="maximize" data-cardType="${cardType}" data-index="${index}" type="button"><i class="icon-icon-max"></i></button>
+                <button class="card-button maximize" data-type="maximize" data-cardType="${cardType}" data-index="${index}" type="button"><i class="icon-icon-max"></i></button>
             </div>
             <div class="gifos-container-card__info">
                 <p class="card__user">${user}</p>

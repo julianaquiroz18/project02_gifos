@@ -4,9 +4,6 @@ const LOCAL_STORAGE_TEMPORAL_FAVORITE = "Gifo temporal Info";
 import { makeGifosCards } from './gifos_card_maker.js';
 
 const htmlNode = document.querySelector(".gifos-wrapper");
-const modalBtnsNode = document.querySelector(".fullsize-btn-wrap");
-
-modalBtnsNode.querySelector(".fav-active").addEventListener('click', temporalGifoInfo);
 document.querySelector(".fullsize-exit").addEventListener('click', removeNode);
 
 
@@ -22,10 +19,10 @@ function drawFavorites() {
         document.querySelector(".links-content__button").classList.add("hidden");
     } else {
         makeGifosCards(favoriteGifosSelected, htmlNode, "favorites");
-        const favoriteNodes = Array.from(document.querySelectorAll(".fav-active"));
-        favoriteNodes.forEach(node => {
-            node.addEventListener('click', removeNode);
-        });
+        const favoriteNodes = Array.from(htmlNode.querySelectorAll(".fav-active"));
+        favoriteNodes.forEach(node => node.addEventListener('click', removeNode));
+        const maximizeBtn = Array.from(htmlNode.querySelectorAll(".maximize"))
+        maximizeBtn.forEach(node => node.addEventListener('click', temporalGifoInfo));
         document.querySelector(".links-content__button").classList.remove("hidden");
     };
 };

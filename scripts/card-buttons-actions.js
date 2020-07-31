@@ -8,6 +8,7 @@ const LOCAL_STORAGE_TEMPORAL_FAVORITE = "Gifo temporal Info";
 function cardButtonAction(e) {
     const gifoIndex = e.currentTarget.getAttribute('data-index');
     const gifoCardType = e.currentTarget.getAttribute('data-cardType');
+    const downloadFrom = e.currentTarget.getAttribute('data-download');
     const gifoInfo = getGifoInformation(gifoCardType, gifoIndex);
     switch (e.currentTarget.getAttribute('data-type')) {
         case "add-favorite":
@@ -19,7 +20,7 @@ function cardButtonAction(e) {
             removeFavoriteGifo(gifoInfo[3]);
             break;
         case "download":
-            downloadGifo(gifoInfo);
+            downloadGifo(gifoCardType, downloadFrom, gifoInfo);
             break;
         case "maximize":
             maximizeGifo(gifoInfo);
@@ -56,10 +57,20 @@ function getGifoInformation(gifoCardType, gifoIndex) {
             break;
         case "favorites":
             const favoriteGifosSelected = JSON.parse(localStorage.getItem(LOCAL_STORAGE_FAVORITES)) || [];
-            gifoURL = favoriteGifosSelected[gifoIndex].images.original.url;
-            gifoUser = favoriteGifosSelected[gifoIndex].username;
-            gifoTitle = favoriteGifosSelected[gifoIndex].title;
-            gifoID = favoriteGifosSelected[gifoIndex].id;
+            const temporalGifo = JSON.parse(localStorage.getItem(LOCAL_STORAGE_TEMPORAL_FAVORITE));
+            if (gifoIndex < favoriteGifosSelected.length) {
+                gifoURL = favoriteGifosSelected[gifoIndex].images.original.url;
+                gifoUser = favoriteGifosSelected[gifoIndex].username;
+                gifoTitle = favoriteGifosSelected[gifoIndex].title;
+                gifoID = favoriteGifosSelected[gifoIndex].id;
+            } else {
+                gifoURL = temporalGifo.images.original.url;
+                gifoUser = temporalGifo.username;
+                gifoTitle = temporalGifo.title;
+                gifoID = temporalGifo.id;
+            };
+
+
             break;
         default:
             break;
@@ -88,15 +99,7 @@ function addfavoriteGifo(gifoCardType, gifoIndex) {
         default:
             break;
     };
-
-
-    // if (gifoCardType === "trending_type") {
-    //     favoriteGifosSelected.push(window.trendingGifosInfo[gifoIndex]);
-    // } else {
-    //     favoriteGifosSelected.push(window.searchedGifosInfo[gifoIndex]);
-    // };
     localStorage.setItem(LOCAL_STORAGE_FAVORITES, JSON.stringify(favoriteGifosSelected));
-
 };
 
 /**
@@ -138,13 +141,21 @@ function toggleFav(gifoCardType, gifoIndex) {
  * @description Download Gifo
  * @param {array} gifoInfo
  */
-async function downloadGifo(gifoInfo) {
-    let fetchResponse = await fetch(gifoInfo[0]);
+async function downloadGifo(gifoCardType, downloadFrom, gifoInfo) {
+    let gifoURL = gifoInfo[0];
+    let name = gifoInfo[2];
+
+    if (gifoCardType === "favorites" & downloadFrom === "full-screen") {
+        const temporalGifo = JSON.parse(localStorage.getItem(LOCAL_STORAGE_TEMPORAL_FAVORITE));
+        gifoURL = temporalGifo.images.original.url;
+        name = temporalGifo.title;
+    }
+    let fetchResponse = await fetch(gifoURL);
     let blobObject = await fetchResponse.blob();
     let imgURL = URL.createObjectURL(blobObject);
     const saveGif = document.createElement("a")
     saveGif.href = imgURL;
-    saveGif.download = `${gifoInfo[2]}.gif`;
+    saveGif.download = `${name}.gif`;
     document.body.appendChild(saveGif);
     saveGif.click();
     document.body.removeChild(saveGif);
