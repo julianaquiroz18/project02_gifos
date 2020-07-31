@@ -24,19 +24,23 @@
 
 //CCS to increase card size in trending section
 .trending-card {
-    margin-left: 22px;
     width: 243px;
     height: 187px;
 }
 
-//End
 @media screen and (min-width: 768px) {
     .gifos-container-card {
         width: vw( 214, 768);
-        height: auto;
+        height: vw( 170, 768);
     }
     .gifos-wrapper {
         grid-template-columns: repeat(3, 3fr);
+    }
+    //CCS to increase card size in trending section
+    .trending-card {
+        margin-left: 22px;
+        width: 260px;
+        height: 200px;
     }
 }
 
@@ -111,7 +115,7 @@
     }
     //CCS to increase card size in trending section
     .trending-card {
-        margin: 0 vw(28, 1440) 0 0;
+        margin: 0 vw(28, 1440) 0;
         width: vw(357, 1440);
         height: vw(275, 1440);
     }

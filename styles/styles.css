@@ -145,7 +145,6 @@ button {
 }
 
 .trending-card {
-  margin-left: 22px;
   width: 243px;
   height: 187px;
 }
@@ -153,11 +152,16 @@ button {
 @media screen and (min-width: 768px) {
   .gifos-container-card {
     width: 27.86458vw;
-    height: auto;
+    height: 22.13542vw;
   }
   .gifos-wrapper {
     -ms-grid-columns: (3fr)[3];
         grid-template-columns: repeat(3, 3fr);
+  }
+  .trending-card {
+    margin-left: 22px;
+    width: 260px;
+    height: 200px;
   }
 }
 
@@ -245,7 +249,7 @@ button {
     opacity: 100%;
   }
   .trending-card {
-    margin: 0 1.94444vw 0 0;
+    margin: 0 1.94444vw 0;
     width: 24.79167vw;
     height: 19.09722vw;
   }
@@ -284,6 +288,7 @@ button {
   border: 1px solid #572EE5;
   background-color: white;
   color: #572EE5;
+  outline: none;
   font-family: “ProximaNova-Bold”;
   font-size: 13px;
   line-height: 16px;

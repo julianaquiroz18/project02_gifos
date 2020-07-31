@@ -18,15 +18,7 @@ function makeGifosCards(gifosInfo, htmlNode, cardType, page = 0) {
     htmlNode.innerHTML += gifosHTML.join("\n");
     htmlNode.querySelectorAll('.card-button').forEach((button) => button.addEventListener('click', cardButtonAction));
     htmlNode.querySelectorAll('.gifos-container-card__img').forEach((image) => image.addEventListener('click', cardButtonAction));
-    //const carrousel = document.querySelector(".gifos-carrousel");
-    //carrousel.querySelectorAll("button.fav-active, button.fav-hover").forEach(node => node.addEventListener('click', drawFavorites));
 };
-
-function prueba() {
-    console.log("entra");
-};
-
-
 
 /**
  * @method cardMarkup

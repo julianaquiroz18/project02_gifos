@@ -19,6 +19,7 @@
         border: 1px solid $purple;
         background-color: white;
         color: $purple;
+        outline: none;
         @include bold;
         @include font(13, 16);
         position: relative;

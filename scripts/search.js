@@ -13,7 +13,7 @@ const searchBarBtn = document.querySelector(".search-bar__button");
 const searchClose = document.querySelector(".active-search__close");
 const suggestionsBlock = document.querySelector(".active-search__suggestions-list");
 const searchInput = document.querySelector(".search-bar__input");
-const seeMorBtn = document.querySelector(".search-results__button");
+const seeMoreBtn = document.querySelector(".search-results__button");
 
 const searchBarState = {
     INITIAL: "initial",
@@ -30,11 +30,11 @@ let currentPage = 0;
 searchInput.addEventListener('keyup', listenInputKeyEvent);
 searchClose.addEventListener('click', listenCloseEvent);
 searchBarBtn.addEventListener('click', listenSearchClick);
-seeMorBtn.addEventListener('click', seeMore);
+seeMoreBtn.addEventListener('click', seeMore);
 
 /**
  * @method seeMore
- * @description Charge more gifos (12 per time)
+ * @description Draw more gifos (12 per time)
  */
 function seeMore() {
     currentPage++;
@@ -170,7 +170,7 @@ function displayGifosSection() {
     document.querySelector(".search-results__title").textContent = capitalizeFirstLetter(searchInput.value);
     document.querySelector(".search-results").classList.remove("hidden");
     document.querySelector(".search-without-results").classList.add("hidden");
-    seeMorBtn.classList.add("hidden");
+    seeMoreBtn.classList.add("hidden");
 }
 
 /**
@@ -182,13 +182,14 @@ function requestGifos(page = 0) {
     gifosData.then((response) => {
         if (response.data.length === 0 & page === 0) {
             document.querySelector(".search-without-results").classList.remove("hidden");
+            document.querySelector(".gifos-wrapper").innerHTML = "";
             return;
         }
         if (response.data.length === 0 & page != 0) {
-            seeMorBtn.classList.add("hidden");
+            seeMoreBtn.classList.add("hidden");
             return;
         }
-        seeMorBtn.classList.remove("hidden");
+        seeMoreBtn.classList.remove("hidden");
         const htmlNode = document.querySelector(".gifos-wrapper");
         window.searchedGifosInfo = [...window.searchedGifosInfo || [], ...response.data];
         if (page === 0) {
