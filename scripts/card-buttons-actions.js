@@ -1,6 +1,5 @@
 const LOCAL_STORAGE_FAVORITES = "Favorite Gifos";
-//localStorage.clear();
-
+const LOCAL_STORAGE_TEMPORAL_FAVORITE = "Gifo temporal Info";
 /**
  * @method cardButtonAction
  * @description select function to be executed accordint to button type
@@ -64,24 +63,8 @@ function getGifoInformation(gifoCardType, gifoIndex) {
             break;
         default:
             break;
-    }
-
-
-    // if (gifoCardType === "trending_type") {
-    //     gifoURL = window.trendingGifosInfo[gifoIndex].images.original.url;
-    //     gifoUser = window.trendingGifosInfo[gifoIndex].username;
-    //     gifoTitle = window.trendingGifosInfo[gifoIndex].title;
-    //     gifoID = window.trendingGifosInfo[gifoIndex].id;
-
-    // } else {
-    //     gifoURL = window.searchedGifosInfo[gifoIndex].images.original.url;
-    //     gifoUser = window.searchedGifosInfo[gifoIndex].username;
-    //     gifoTitle = window.searchedGifosInfo[gifoIndex].title;
-    //     gifoID = window.searchedGifosInfo[gifoIndex].id;
-    // };
-
+    };
     return [gifoURL, gifoUser, gifoTitle, gifoID];
-
 };
 
 /**
@@ -91,11 +74,27 @@ function getGifoInformation(gifoCardType, gifoIndex) {
  */
 function addfavoriteGifo(gifoCardType, gifoIndex) {
     let favoriteGifosSelected = JSON.parse(localStorage.getItem(LOCAL_STORAGE_FAVORITES)) || [];
-    if (gifoCardType === "trending_type") {
-        favoriteGifosSelected.push(window.trendingGifosInfo[gifoIndex]);
-    } else {
-        favoriteGifosSelected.push(window.searchedGifosInfo[gifoIndex]);
+    switch (gifoCardType) {
+        case "trending_type":
+            favoriteGifosSelected.push(window.trendingGifosInfo[gifoIndex]);
+            break;
+        case "search_type":
+            favoriteGifosSelected.push(window.searchedGifosInfo[gifoIndex]);
+            break;
+        case "favorites":
+            const temporalGifo = JSON.parse(localStorage.getItem(LOCAL_STORAGE_TEMPORAL_FAVORITE));
+            favoriteGifosSelected.push(temporalGifo);
+            break;
+        default:
+            break;
     };
+
+
+    // if (gifoCardType === "trending_type") {
+    //     favoriteGifosSelected.push(window.trendingGifosInfo[gifoIndex]);
+    // } else {
+    //     favoriteGifosSelected.push(window.searchedGifosInfo[gifoIndex]);
+    // };
     localStorage.setItem(LOCAL_STORAGE_FAVORITES, JSON.stringify(favoriteGifosSelected));
 
 };
