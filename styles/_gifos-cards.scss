@@ -1,6 +1,7 @@
 .gifos-wrapper {
     display: grid;
     margin: 0 vw(21, 375);
+    padding-bottom: 78px;
     column-gap: 21px;
     row-gap: 25px;
     grid-template-columns: repeat(2, 2fr);

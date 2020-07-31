@@ -27,9 +27,12 @@ function autoCompleteRequest(URL, queryTerm) {
  * @method searchGifosRequest
  * @description Get gifos according term searched
  * @param {string} URL
+ * @param {string} queryTerm
+ * @param {number} page
  * @returns {promise}
  */
-function searchGifosRequest(URL, queryTerm, offset) {
+function searchGifosRequest(URL, queryTerm, page) {
+    const offset = page * 12;
     const completeURL = `${URL}&q=${queryTerm}&limit=12&offset=${offset}`;
     return apiRequest(completeURL);
 }

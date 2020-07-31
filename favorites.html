@@ -29,14 +29,14 @@
         <section class="links-content">
             <div class="links-content__icon "><i class="icon-icon-favoritos"></i></div>
             <h1 class="links-content__title">Favoritos</h1>
-            <div class="no-content">
+            <div class="no-content hidden">
                 <img class="no-content__img" src="./assets/icon-busqueda-sin-resultado.svg" alt="Favoritos sin contenido">
                 <p class="no-content__info">"¡Guarda tu primer GIFO en Favoritos para que se muestre aquí!"</p>
             </div>
-            <div class="favorites-gifos">
+            <div class="gifos-wrapper">
 
             </div>
-            <button class="links-content__button">VER MAS</button>
+            <button class="links-content__button hidden">VER MAS</button>
         </section>
 
 
@@ -70,7 +70,8 @@
                         <p class="fullsize-title">title</p>
                     </div>
                     <div class="fullsize-btn-wrap">
-                        <button class="fullsize-button" data-type="favorite" type="button"><i class="icon-icon-fav-hover"></i></button>
+                        <button class="fullsize-button fav-hover" data-type="add-favorite" type="button"><i class="icon-icon-fav-hover"></i></button>
+                        <button class="fullsize-button fav-active hidden" data-type="remove-favorite" type="button"><i class="icon-icon-fav-active"></i></button>
                         <button class="fullsize-button" data-type="download" type="button"><i class="icon-icon-download"></i></button>
                     </div>
                 </div>
@@ -78,7 +79,7 @@
         </div>
     </main>
     <script type="module" src="./scripts/trending_carrousel.js"></script>
-    <script type="module" src="./scripts/search.js"></script>
+    <script type="module" src="./scripts/favorites.js"></script>
 </body>
 
 </html>

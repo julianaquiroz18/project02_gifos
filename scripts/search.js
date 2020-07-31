@@ -13,6 +13,7 @@ const searchBarBtn = document.querySelector(".search-bar__button");
 const searchClose = document.querySelector(".active-search__close");
 const suggestionsBlock = document.querySelector(".active-search__suggestions-list");
 const searchInput = document.querySelector(".search-bar__input");
+const seeMorBtn = document.querySelector(".search-results__button");
 
 const searchBarState = {
     INITIAL: "initial",
@@ -21,6 +22,7 @@ const searchBarState = {
     AFTER_SEARCH: "after_search",
 }
 let isCurrentlySearching = false;
+let currentPage = 0;
 
 /**
  * Events
@@ -28,6 +30,16 @@ let isCurrentlySearching = false;
 searchInput.addEventListener('keyup', listenInputKeyEvent);
 searchClose.addEventListener('click', listenCloseEvent);
 searchBarBtn.addEventListener('click', listenSearchClick);
+seeMorBtn.addEventListener('click', seeMore);
+
+/**
+ * @method seeMore
+ * @description Charge more gifos (12 per time)
+ */
+function seeMore() {
+    currentPage++;
+    requestGifos(currentPage);
+}
 
 /**
  * @method listenInputKeyEvent
@@ -78,6 +90,7 @@ function requestSuggestions() {
  * @description This function is called when any suggestion is clicked
  */
 function listenSelectedSuggestion(e) {
+    currentPage = 0;
     searchInput.value = e.target.innerText;
     updateSearchBarState(searchBarState.AFTER_SEARCH);
     searchGifos();
@@ -157,24 +170,31 @@ function displayGifosSection() {
     document.querySelector(".search-results__title").textContent = capitalizeFirstLetter(searchInput.value);
     document.querySelector(".search-results").classList.remove("hidden");
     document.querySelector(".search-without-results").classList.add("hidden");
-    document.querySelector(".search-results__button").classList.add("hidden");
+    seeMorBtn.classList.add("hidden");
 }
 
 /**
  * @method displayGifosSection
  * @description This function request GIFOS information to API
  */
-function requestGifos() {
-    const gifosData = searchGifosRequest(searchURL, searchInput.value, 0);
+function requestGifos(page = 0) {
+    const gifosData = searchGifosRequest(searchURL, searchInput.value, page);
     gifosData.then((response) => {
-        if (response.data.length === 0) {
+        if (response.data.length === 0 & page === 0) {
             document.querySelector(".search-without-results").classList.remove("hidden");
             return;
         }
-        document.querySelector(".search-results__button").classList.remove("hidden");
+        if (response.data.length === 0 & page != 0) {
+            seeMorBtn.classList.add("hidden");
+            return;
+        }
+        seeMorBtn.classList.remove("hidden");
         const htmlNode = document.querySelector(".gifos-wrapper");
-        window.searchedGifosInfo = response.data;
-        makeGifosCards(response.data, htmlNode, "search_type");
+        window.searchedGifosInfo = [...window.searchedGifosInfo || [], ...response.data];
+        if (page === 0) {
+            htmlNode.innerHTML = "";
+        };
+        makeGifosCards(response.data, htmlNode, "search_type", page);
 
     }).catch((error) => { console.log(error) });
 }
