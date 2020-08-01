@@ -11,8 +11,7 @@ let currentPage = 1;
 /**
  * Events
  */
-document.querySelector(".fullsize-exit").addEventListener('click', removeNode);
-seeMoreBtn.addEventListener('click', seeMore);
+
 
 /**
  * @method seeMore
@@ -43,8 +42,8 @@ function drawFavorites() {
     };
     document.querySelector(".no-content").classList.add("hidden");
     makeGifosCards(favoriteGifosSlice, htmlNode, "favorites", startingPage);
-    const favoriteNodes = Array.from(htmlNode.querySelectorAll(".fav-active"));
-    favoriteNodes.forEach(node => node.addEventListener('click', removeNode));
+    const favotiteBtnNodes = Array.from(htmlNode.querySelectorAll(".fav-active"));
+    favotiteBtnNodes.forEach(node => node.addEventListener('click', refreshFavorites));
     const maximizeBtn = Array.from(htmlNode.querySelectorAll(".maximize"))
     maximizeBtn.forEach(node => node.addEventListener('click', temporalGifoInfo));
     const containerImg = Array.from(htmlNode.querySelectorAll(".gifos-container-card__img"))
@@ -53,13 +52,16 @@ function drawFavorites() {
     if (favoriteGifosSelected.slice(finalIndex, finalIndex + 12).length === 0) {
         seeMoreBtn.classList.add("hidden");
     };
+
+    document.querySelector(".fullsize-exit").addEventListener('click', refreshFavorites);
+    seeMoreBtn.addEventListener('click', seeMore);
 };
 
 /**
- * @method removeNode
+ * @method refreshFavorites
  * @description Remove gifos deselected as favorite
  */
-function removeNode() {
+function refreshFavorites() {
     htmlNode.innerHTML = "";
     startingPage = 0;
     drawFavorites();
@@ -78,3 +80,8 @@ function temporalGifoInfo(e) {
 }
 
 drawFavorites();
+
+
+export {
+    refreshFavorites
+};
