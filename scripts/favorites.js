@@ -6,7 +6,8 @@ const LOCAL_STORAGE_FAVORITES = "Favorite Gifos";
 const LOCAL_STORAGE_TEMPORAL_FAVORITE = "Gifo temporal Info";
 const htmlNode = document.querySelector(".gifos-wrapper");
 const seeMoreBtn = document.querySelector(".links-content__button");
-let currentPage = 0;
+let startingPage = 0;
+let currentPage = 1;
 /**
  * Events
  */
@@ -18,29 +19,30 @@ seeMoreBtn.addEventListener('click', seeMore);
  * @description Draw more gifos (12 per time)
  */
 function seeMore() {
+    startingPage++;
     currentPage++;
-    drawFavorites(currentPage);
+    drawFavorites();
 }
 
 /**
  * @method drawFavorites
  * @description Show the gifos favorites storage in local storage
  */
-function drawFavorites(page = 0) {
+function drawFavorites() {
     const favoriteGifosSelected = JSON.parse(localStorage.getItem(LOCAL_STORAGE_FAVORITES)) || [];
-    const initialIndex = page * 12;
-    const finalIndex = initialIndex + 12;
+    const initialIndex = startingPage * 12;
+    const finalIndex = currentPage * 12;
     const favoriteGifosSlice = favoriteGifosSelected.slice(initialIndex, finalIndex);
-    if (favoriteGifosSlice.length === 0 & page === 0) {
+    if (favoriteGifosSelected.length === 0) {
         document.querySelector(".no-content").classList.remove("hidden");
         seeMoreBtn.classList.add("hidden");
         return;
     }
-    if (page === 0) {
+    if (startingPage === 0) {
         htmlNode.innerHTML = "";
     };
     document.querySelector(".no-content").classList.add("hidden");
-    makeGifosCards(favoriteGifosSlice, htmlNode, "favorites");
+    makeGifosCards(favoriteGifosSlice, htmlNode, "favorites", startingPage);
     const favoriteNodes = Array.from(htmlNode.querySelectorAll(".fav-active"));
     favoriteNodes.forEach(node => node.addEventListener('click', removeNode));
     const maximizeBtn = Array.from(htmlNode.querySelectorAll(".maximize"))
@@ -48,7 +50,7 @@ function drawFavorites(page = 0) {
     const containerImg = Array.from(htmlNode.querySelectorAll(".gifos-container-card__img"))
     containerImg.forEach(node => node.addEventListener('click', temporalGifoInfo));
     seeMoreBtn.classList.remove("hidden");
-    if (favoriteGifosSelected.slice(finalIndex, finalIndex + 12).length === 0 & page != 0) {
+    if (favoriteGifosSelected.slice(finalIndex, finalIndex + 12).length === 0) {
         seeMoreBtn.classList.add("hidden");
     };
 };
@@ -59,7 +61,9 @@ function drawFavorites(page = 0) {
  */
 function removeNode() {
     htmlNode.innerHTML = "";
+    startingPage = 0;
     drawFavorites();
+    startingPage = currentPage - 1;
 };
 
 /**
