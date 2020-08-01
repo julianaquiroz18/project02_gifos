@@ -11,7 +11,8 @@ let currentPage = 1;
 /**
  * Events
  */
-
+document.querySelector(".fullsize-exit").addEventListener('click', refreshFavorites);
+seeMoreBtn.addEventListener('click', seeMore);
 
 /**
  * @method seeMore
@@ -52,9 +53,6 @@ function drawFavorites() {
     if (favoriteGifosSelected.slice(finalIndex, finalIndex + 12).length === 0) {
         seeMoreBtn.classList.add("hidden");
     };
-
-    document.querySelector(".fullsize-exit").addEventListener('click', refreshFavorites);
-    seeMoreBtn.addEventListener('click', seeMore);
 };
 
 /**

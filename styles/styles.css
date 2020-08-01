@@ -145,6 +145,7 @@ button {
 }
 
 .trending-card {
+  margin-left: 22px;
   width: 243px;
   height: 187px;
 }
@@ -643,6 +644,7 @@ button {
 .active-search__search {
   color: #9CAFC3;
   left: 20px;
+  right: auto;
 }
 
 .active-search__close {
