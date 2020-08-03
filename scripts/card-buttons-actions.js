@@ -16,7 +16,7 @@ function cardButtonAction(e) {
             addfavoriteGifo(gifoCardType, gifoIndex);
             break;
         case "remove-favorite":
-            toggleFav(gifoCardType, gifoIndex);
+            toggleFav(gifoCardType, gifoIndex, gifoInfo[3]);
             removeFavoriteGifo(gifoInfo[3]);
             break;
         case "download":
@@ -119,7 +119,7 @@ function removeFavoriteGifo(gifoID) {
     localStorage.setItem(LOCAL_STORAGE_FAVORITES, JSON.stringify(favoriteGifosSelected));
 };
 
-function toggleFav(gifoCardType, gifoIndex) {
+function toggleFav(gifoCardType, gifoIndex, gifoID) {
     let gifosWrap;
     if (gifoCardType === "trending_type") {
         gifosWrap = document.querySelector(".gifos-carrousel");
@@ -134,6 +134,22 @@ function toggleFav(gifoCardType, gifoIndex) {
     const wrapBtnMax = document.querySelector(".fullsize-btn-wrap");
     wrapBtnMax.querySelector(".fav-hover").classList.toggle("hidden");
     wrapBtnMax.querySelector(".fav-active").classList.toggle("hidden");
+
+    if (gifoCardType === "favorites") {
+        let indexInCarrousel;
+        const carrouselWrap = document.querySelector(".gifos-carrousel");
+        for (let gifo = 0; gifo < window.trendingGifosInfo.length; gifo++) {
+            if (window.trendingGifosInfo[gifo].id === gifoID) {
+                indexInCarrousel = gifo;
+                const addFavorite = carrouselWrap.getElementsByClassName("fav-hover");
+                const removeFavorite = carrouselWrap.getElementsByClassName("fav-active");
+                addFavorite[indexInCarrousel].classList.toggle("hidden");
+                removeFavorite[indexInCarrousel].classList.toggle("hidden");
+                break;
+            };
+        };
+
+    }
 };
 
 /**
