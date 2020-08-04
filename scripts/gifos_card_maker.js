@@ -1,4 +1,4 @@
-import { cardButtonAction, checkFavorite } from './card-buttons-actions.js';
+import { cardButtonAction, checkFavorite } from './card_buttons_actions.js';
 
 
 /**

@@ -93,6 +93,7 @@
         color: $gray-line;
         margin-bottom: 10px;
         @include font(16, 20);
+        cursor: pointer;
         & .icon-icon-search {
             margin-right: 15px;
         }
