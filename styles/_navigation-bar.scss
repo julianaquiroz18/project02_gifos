@@ -110,9 +110,9 @@
             border: 1px solid $purple;
             border-radius: 50%;
             position: absolute;
+            text-decoration: none;
             top: 18px;
             left: vw(1230, 1440);
-            outline: none;
             color: $purple;
             &:hover {
                 background-color: $purple;
@@ -126,6 +126,9 @@
         }
     }
     .icon-button-crear-gifo {
+        position: relative;
+        top: 18px;
+        left: 35%;
         font-size: 16px;
     }
     .navigation-bar__checkbox-menu,

@@ -13,11 +13,12 @@
         justify-content: center;
         align-items: center;
         position: relative;
+        min-height: 550px;
     }
     .screen {
         margin-top: 4px;
         width: 688px;
-        height: 390px;
+        min-height: 390px;
         border: 1px solid $purple;
         position: relative;
         &-decoration {
@@ -61,7 +62,7 @@
         transform: translateX(-50%);
         text-align: center;
         width: 480px;
-        height: 320px;
+        min-height: 320px;
         &-image {
             position: absolute;
             width: 100%;

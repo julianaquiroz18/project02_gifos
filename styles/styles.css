@@ -480,9 +480,9 @@ button {
     border: 1px solid #572EE5;
     border-radius: 50%;
     position: absolute;
+    text-decoration: none;
     top: 18px;
     left: 85.41667vw;
-    outline: none;
     color: #572EE5;
   }
   .navigation-bar__button:hover {
@@ -495,6 +495,9 @@ button {
     color: white;
   }
   .icon-button-crear-gifo {
+    position: relative;
+    top: 18px;
+    left: 35%;
     font-size: 16px;
   }
   .navigation-bar__checkbox-menu,
@@ -1094,11 +1097,12 @@ button {
         -ms-flex-align: center;
             align-items: center;
     position: relative;
+    min-height: 550px;
   }
   .screen {
     margin-top: 4px;
     width: 688px;
-    height: 390px;
+    min-height: 390px;
     border: 1px solid #572EE5;
     position: relative;
   }
@@ -1152,7 +1156,7 @@ button {
             transform: translateX(-50%);
     text-align: center;
     width: 480px;
-    height: 320px;
+    min-height: 320px;
   }
   .create-gifos__wrapper-image {
     position: absolute;
