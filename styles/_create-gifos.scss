@@ -7,8 +7,10 @@
         display: inherit;
     }
     .create-gifos_main {
+        height: calc(100vh - 95px - 125px);
         display: flex;
         flex-direction: column;
+        justify-content: center;
         align-items: center;
         position: relative;
     }

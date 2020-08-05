@@ -37,7 +37,7 @@
                         <button class="card-button card-button__link" type="button"><i class="icon-icon-link"></i></button>
                     </div>
                 </div>
-                <img class="create-gifos__wrapper-image hidden" src="http://lorempixel.com/output/nightlife-q-c-480-320-4.jpg" alt="Gifo Maker">
+                <video class="create-gifos__wrapper-image hidden" src=""></video>
                 <h1 class="create-gifos__wrapper-title">Aquí podrás<span class="line-break"></span>crear tus propios <span class="color-change">GIFOS</span></h1>
                 <p class="create-gifos__wrapper-info">¡Crea tu GIFO en sólo 3 pasos!<span class="line-break"></span>(sólo necesitas una cámara para grabar un video)</p>
                 <div class="camera-wrapper">
@@ -49,13 +49,16 @@
         </section>
         <section class="create-gifos-status">
             <div class="create-gifos-status__counter">
-                <div class="counter">1</div>
-                <div class="counter">2</div>
-                <div class="counter">3</div>
+                <div class="counter first">1</div>
+                <div class="counter second">2</div>
+                <div class="counter third">3</div>
             </div>
             <p class="create-gifos-status__timming hidden">00:00:05</p>
             <button class="create-gifos-status__repeat-capture hidden" type="button">REPETIR CAPTURA</button>
-            <button class="links-content__button" type="button">COMENZAR</button>
+            <button class="links-content__button start" type="button">COMENZAR</button>
+            <button class="links-content__button record hidden" type="button">GRABAR</button>
+            <button class="links-content__button finish hidden" type="button">FINALIZAR</button>
+            <button class="links-content__button upload hidden" type="button">SUBIR GIFO</button>
         </section>
     </main>
     <footer class="footer">
@@ -69,6 +72,8 @@
         </div>
         <p class="copy-rights">© GIFOS 2020 All Rights Reserved.</p>
     </footer>
+    <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
+    <script src="./scripts/create_gifo.js"></script>
 </body>
 
 </html>
