@@ -33,7 +33,7 @@ function cardButtonAction(e) {
 
 /**
  * @method getGifoInformation
- * @description Get Gifo information to asign inside modal
+ * @description Get Gifo information 
  * @param {string}
  * @returns {array}
  */
@@ -169,7 +169,7 @@ async function downloadGifo(gifoCardType, downloadFrom, gifoInfo) {
     let fetchResponse = await fetch(gifoURL);
     let blobObject = await fetchResponse.blob();
     let imgURL = URL.createObjectURL(blobObject);
-    const saveGif = document.createElement("a")
+    const saveGif = document.createElement("a");
     saveGif.href = imgURL;
     saveGif.download = `${name}.gif`;
     document.body.appendChild(saveGif);

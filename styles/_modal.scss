@@ -69,6 +69,10 @@
     }
 }
 
+.my-gifs_modal_btn-wrap {
+    justify-content: flex-end;
+}
+
 @media screen and (min-width: 768px) {
     .fullsize {
         &-exit {

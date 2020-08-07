@@ -29,11 +29,11 @@
         <section class="links-content">
             <div class="links-content__icon "><i class="icon-icon-mis-gifos"></i></div>
             <h1 class="links-content__title">Mis GIFOS</h1>
-            <div class="no-content">
+            <div class="no-content hidden">
                 <img class="no-content__img" src="./assets/icon-mis-gifos-sin-contenido.svg" alt="Mis GIFOS sin contenido">
                 <p class="no-content__info">¡Anímate a crear tu primer GIFO!</p>
             </div>
-            <div class="mis-gifos">
+            <div class="gifos-wrapper">
 
             </div>
             <button class="links-content__button">VER MAS</button>
@@ -50,15 +50,13 @@
         <div class="modal hidden">
             <div class="fullsize">
                 <button class="fullsize-exit"><i class="icon-button-close"></i></button>
-                <img class="fullsize-gifo" src="https://lorempixel.com/output/people-q-c-318-249-2.jpg" alt="Gifo Fullsize">
+                <img class="fullsize-gifo" src="" alt="Gifo Fullsize">
                 <div class="fullsize-footer">
                     <div class="fullsize-info-wrap">
                         <p class="fullsize-user">User</p>
                         <p class="fullsize-title">title</p>
                     </div>
-                    <div class="fullsize-btn-wrap">
-                        <button class="fullsize-button fav-hover" data-type="add-favorite" type="button"><i class="icon-icon-fav-hover"></i></button>
-                        <button class="fullsize-button fav-active hidden" data-type="remove-favorite" type="button"><i class="icon-icon-fav-active"></i></button>
+                    <div class="fullsize-btn-wrap my-gifs_modal_btn-wrap">
                         <button class="fullsize-button" data-download="full-screen" data-type="download" type="button"><i class="icon-icon-download"></i></button>
                     </div>
                 </div>
@@ -76,6 +74,7 @@
             <p class="copy-rights">© GIFOS 2020 All Rights Reserved.</p>
         </footer>
     </main>
+    <script type="module" src="./scripts/my_gifs.js"></script>
     <script type="module" src="./scripts/trending_carrousel.js"></script>
 </body>
 

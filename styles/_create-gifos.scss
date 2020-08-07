@@ -143,7 +143,9 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        z-index: 5;
+        &_create-gifos {
+            z-index: 5;
+        }
         &-info {
             position: relative;
             top: 10px;

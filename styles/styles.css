@@ -1049,6 +1049,12 @@ button {
   background-color: white;
 }
 
+.my-gifs_modal_btn-wrap {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
 @media screen and (min-width: 768px) {
   .fullsize-exit {
     font-size: 15px;
@@ -1274,6 +1280,8 @@ button {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+  }
+  .overlay_create-gifos {
     z-index: 5;
   }
   .overlay-info {

@@ -61,6 +61,10 @@ function showVideo(stream) {
 function createRecorder(stream) {
     const recorder = RecordRTC(stream, {
         type: 'gif',
+        frameRate: 1,
+        quality: 10,
+        width: 360,
+        hidden: 240,
         onGifRecordingStarted: function() {
             console.log('started');
         },

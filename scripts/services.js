@@ -16,6 +16,7 @@ function apiRequest(URL) {
  * @method autoCompleteRequest
  * @description Get suggestions to seacrh autocomplete 
  * @param {string} URL
+ *  * @param {string} queryTerm
  * @returns {promise}
  */
 function autoCompleteRequest(URL, queryTerm) {
@@ -39,10 +40,9 @@ function searchGifosRequest(URL, queryTerm, page) {
 
 /**
  * @method uploadGifosRequest
- * @description Get gifos according term searched
+ * @description Upload Gifos created by user
  * @param {string} URL
- * @param {string} queryTerm
- * @param {number} page
+ * @param {string} gifoData
  * @returns {promise}
  */
 function uploadGifosRequest(URL, gifoData) {
