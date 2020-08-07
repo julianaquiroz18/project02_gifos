@@ -10,8 +10,10 @@ const uploadBtn = document.querySelector(".upload");
 const counter = document.getElementsByClassName("counter");
 const repeatCaptureBtn = document.querySelector(".create-gifos-status__repeat-capture");
 const uploadGifoURL = constant.UPLOAD_URL + "gifs" + constant.API_KEY;
+const timerHTML = document.querySelector('.create-gifos-status__timming');
 let gifoData;
-
+let recordingStartDate;
+let ticker;
 
 startBtn.addEventListener("click", startListener);
 uploadBtn.addEventListener("click", uploadGifo);
@@ -68,6 +70,8 @@ function createRecorder(stream) {
 };
 
 function startRecording(recorder) {
+    timerHTML.classList.remove("hidden");
+    setupTicker();
     recorder.startRecording();
     recordBtn.classList.add("hidden");
     finishBtn.classList.remove("hidden");
@@ -75,15 +79,32 @@ function startRecording(recorder) {
     counter[1].classList.toggle("counter-process");
 };
 
+function setupTicker() {
+    recordingStartDate = new Date().getTime();
+    ticker = setInterval(updateRecordedTime, 1000);
+}
+
+function updateRecordedTime() {
+    const elapsedTimeInMilliseconds = new Date().getTime() - recordingStartDate;
+    const elapsedTime = calculateTimeDuration(elapsedTimeInMilliseconds / 1000);
+    timerHTML.textContent = elapsedTime;
+}
+
+function stopTicker() {
+    recordingStartDate = null;
+    clearInterval(ticker);
+}
+
 function stopRecording(recorder) {
+    stopTicker();
+    timerHTML.textContent = calculateTimeDuration(0);
+    timerHTML.classList.add("hidden");
     finishBtn.classList.add("hidden");
     uploadBtn.classList.remove("hidden");
     repeatCaptureBtn.classList.remove("hidden");
     recorder.stopRecording(() => prepareGifInfo(recorder));
     recorder.camera.stop();
     recorder = null;
-
-
 };
 
 function prepareGifInfo(recorder) {
@@ -126,4 +147,24 @@ function recordAgain() {
     repeatCaptureBtn.classList.toggle("hidden");
     recordBtn.classList.remove("hidden");
     getStreamAndRecord();
+}
+
+function calculateTimeDuration(secs) {
+    let hr = Math.floor(secs / 3600);
+    let min = Math.floor((secs - (hr * 3600)) / 60);
+    let sec = Math.floor(secs - (hr * 3600) - (min * 60));
+
+    if (min < 10) {
+        min = "0" + min;
+    }
+
+    if (sec < 10) {
+        sec = "0" + sec;
+    }
+
+    if (hr <= 0) {
+        return min + ':' + sec;
+    }
+
+    return hr + ':' + min + ':' + sec;
 }
