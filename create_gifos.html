@@ -33,9 +33,11 @@
             <div class="screen-decoration deco4"></div>
             <div class="create-gifos__wrapper">
                 <div class="overlay hidden">
-                    <div class="overlay-icon"><i class="icon-loader"></i></div>
-                    <p class="overlay-info">Estamos subiendo tu gifo</p>
-                    <div class="overlay__buttons-wrapper hidden">
+                    <div class="overlay-icon uploading"><i class="icon-loader"></i></div>
+                    <p class="overlay-info uploading">Estamos subiendo tu gifo</p>
+                    <div class="overlay-icon uploaded hidden"><i class="icon-check"></i></div>
+                    <p class="overlay-info uploaded uploaded hidden">GIFO subido con éxito</p>
+                    <div class="overlay__buttons-wrapper uploaded hidden">
                         <button class="card-button" type="button"><i class="icon-icon-download"></i></button>
                         <button class="card-button card-button__link" type="button"><i class="icon-icon-link"></i></button>
                     </div>
@@ -76,7 +78,7 @@
         <p class="copy-rights">© GIFOS 2020 All Rights Reserved.</p>
     </footer>
     <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
-    <script src="./scripts/create_gifo.js"></script>
+    <script type="module" src="./scripts/create_gifo.js"></script>
 </body>
 
 </html>

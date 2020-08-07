@@ -37,9 +37,26 @@ function searchGifosRequest(URL, queryTerm, page) {
     return apiRequest(completeURL);
 }
 
+/**
+ * @method uploadGifosRequest
+ * @description Get gifos according term searched
+ * @param {string} URL
+ * @param {string} queryTerm
+ * @param {number} page
+ * @returns {promise}
+ */
+function uploadGifosRequest(URL, gifoData) {
+    return new Promise((resolve, reject) => {
+        fetch(URL, { method: 'POST', body: gifoData })
+            .then(response => { resolve(response.json()) })
+            .catch(error => { reject(error) })
+    });
+}
+
 export {
 
     apiRequest,
     autoCompleteRequest,
-    searchGifosRequest
+    searchGifosRequest,
+    uploadGifosRequest
 };
