@@ -7,6 +7,26 @@ import { apiRequest } from './services.js';
 const LOCAL_STORAGE_MYGIFS = "My Gifos";
 const downloadMyGifosBaseURL = constant.BASE_URL + "gifs";
 const htmlNode = document.querySelector(".gifos-wrapper");
+const seeMoreBtn = document.querySelector(".links-content__button");
+let startingPage = 0;
+let currentPage = 1;
+
+/**
+ * Events
+ */
+document.querySelector(".fullsize-exit").addEventListener('click', refreshMyGifs);
+seeMoreBtn.addEventListener('click', seeMore);
+
+
+/**
+ * @method seeMore
+ * @description Draw more gifos (12 per time)
+ */
+function seeMore() {
+    startingPage++;
+    currentPage++;
+    drawMyGifs(window.myGifosInfo);
+}
 
 /**
  * @method getGifosIds
@@ -35,16 +55,51 @@ function downloadMyGifos() {
     console.log(completeURL);
     const downloadMyGifos = apiRequest(completeURL);
     downloadMyGifos.then(gifosData => {
-            if (gifosData.data.length === 0) {
-                document.querySelector(".no-content").classList.remove("hidden");
-                document.querySelector(".gifos-wrapper").innerHTML = "";
-                return;
-            }
             window.myGifosInfo = gifosData.data;
-            makeMyGifosCards(gifosData.data, htmlNode);
+            drawMyGifs(gifosData.data);
         })
         .catch((error) => { console.log(error) });
 };
+
+/**
+ * @method drawMyGifs
+ * @description Show gifos uploaded by user
+ */
+function drawMyGifs(gifosData) {
+    const initialIndex = startingPage * 12;
+    const finalIndex = currentPage * 12;
+    const gifosDataSlice = gifosData.slice(initialIndex, finalIndex);
+
+    if (gifosData.length === 0) {
+        document.querySelector(".no-content").classList.remove("hidden");
+        seeMoreBtn.classList.add("hidden");
+        return;
+    }
+    if (startingPage === 0) {
+        htmlNode.innerHTML = "";
+    };
+    document.querySelector(".no-content").classList.add("hidden");
+    makeMyGifosCards(gifosDataSlice, htmlNode, startingPage);
+    const deleteBtnNodes = Array.from(htmlNode.querySelectorAll(".delete"));
+    deleteBtnNodes.forEach(node => node.addEventListener('click', refreshMyGifs));
+
+    if (gifosData.slice(finalIndex, finalIndex + 12).length === 0) {
+        seeMoreBtn.classList.add("hidden");
+    };
+};
+
+/**
+ * @method refreshMyGifs
+ * @description Remove gifos deleted by user
+ */
+function refreshMyGifs() {
+    htmlNode.innerHTML = "";
+    startingPage = 0;
+    downloadMyGifos();
+    //startingPage = currentPage - 1;
+};
+
+
 
 /**
  * @method makeMyGifosCards

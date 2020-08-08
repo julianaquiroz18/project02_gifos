@@ -1049,12 +1049,6 @@ button {
   background-color: white;
 }
 
-.my-gifs_modal_btn-wrap {
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-}
-
 @media screen and (min-width: 768px) {
   .fullsize-exit {
     font-size: 15px;

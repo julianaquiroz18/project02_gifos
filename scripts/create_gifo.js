@@ -1,6 +1,10 @@
 import constant from './constants.js';
 import { uploadGifosRequest } from './services.js';
 
+
+/**
+ * Global Variables
+ */
 const LOCAL_STORAGE_MYGIFS = "My Gifos";
 const video = document.querySelector(".create-gifos__wrapper-image");
 const startBtn = document.querySelector(".start");
@@ -15,6 +19,10 @@ let gifoData;
 let recordingStartDate;
 let ticker;
 
+
+/**
+ * Events
+ */
 startBtn.addEventListener("click", startListener);
 uploadBtn.addEventListener("click", uploadGifo);
 repeatCaptureBtn.addEventListener("click", recordAgain);
