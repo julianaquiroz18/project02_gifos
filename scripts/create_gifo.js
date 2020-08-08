@@ -1,5 +1,5 @@
 import constant from './constants.js';
-import { uploadGifosRequest } from './services.js';
+import { apiRequest, uploadGifosRequest } from './services.js';
 
 
 /**
@@ -15,6 +15,7 @@ const counter = document.getElementsByClassName("counter");
 const repeatCaptureBtn = document.querySelector(".create-gifos-status__repeat-capture");
 const uploadGifoURL = constant.UPLOAD_URL + "gifs" + constant.API_KEY;
 const timerHTML = document.querySelector('.create-gifos-status__timming');
+let gifoURL;
 let gifoData;
 let recordingStartDate;
 let ticker;
@@ -26,6 +27,9 @@ let ticker;
 startBtn.addEventListener("click", startListener);
 uploadBtn.addEventListener("click", uploadGifo);
 repeatCaptureBtn.addEventListener("click", recordAgain);
+document.querySelector(".card-button__link").addEventListener("click", () => copyURL(gifoURL));
+document.querySelector(".card-button__download").addEventListener("click", () => downloadGifo(gifoURL));
+
 
 /**
  * @method startListener
@@ -185,13 +189,22 @@ function prepareGifInfo(recorder) {
  */
 function uploadGifo() {
     showUploadingUI()
+    document.querySelector(".create-gifos__wrapper-title").innerHTML = "";
     const uploadGifoData = uploadGifosRequest(uploadGifoURL, gifoData);
-    uploadGifoData.then((response) => {
-            const gifoID = response.data;
+
+    uploadGifoData
+        .then((response) => {
+            const gifoInfo = response.data;
+            const gifoID = gifoInfo.id;
             let myGifosIDs = JSON.parse(localStorage.getItem(LOCAL_STORAGE_MYGIFS)) || [];
-            myGifosIDs.push(gifoID);
+            myGifosIDs.push(gifoInfo);
             localStorage.setItem(LOCAL_STORAGE_MYGIFS, JSON.stringify(myGifosIDs));
             confirmUploadUI();
+
+            const requestGifoInfoURL = `${constant.BASE_URL}gifs/${gifoID}${constant.API_KEY}`;
+            return apiRequest(requestGifoInfoURL);
+        }).then(response => {
+            gifoURL = response.data.images.original.url;
         })
         .catch((error) => { console.log(error) });
 };
@@ -215,7 +228,6 @@ function showUploadingUI() {
 function confirmUploadUI() {
     document.querySelectorAll(".uploading").forEach(element => element.classList.toggle("hidden"));
     document.querySelectorAll(".uploaded").forEach(element => element.classList.toggle("hidden"));
-    newRecordBtn.classList.remove("hidden");
 }
 
 /**
@@ -253,3 +265,34 @@ function calculateTimeDuration(secs) {
 
     return hr + ':' + min + ':' + sec;
 }
+
+/**
+ * @method downloadGifo
+ * @description Download Gifo
+ * @param {string} gifoURL
+ */
+async function downloadGifo(gifoURL) {
+    let fetchResponse = await fetch(gifoURL);
+    let blobObject = await fetchResponse.blob();
+    let imgURL = URL.createObjectURL(blobObject);
+    const saveGif = document.createElement("a");
+    saveGif.href = imgURL;
+    saveGif.download = `myGif.gif`;
+    document.body.appendChild(saveGif);
+    saveGif.click();
+    document.body.removeChild(saveGif);
+};
+
+/**
+ * @method copyURL
+ * @description Copy gifo URL
+ * @param {string} gifoURL
+ */
+function copyURL(gifoURL) {
+    const aux = document.createElement("input");
+    aux.setAttribute("value", gifoURL);
+    document.body.appendChild(aux);
+    aux.select();
+    document.execCommand("copy");
+    document.body.removeChild(aux);
+};

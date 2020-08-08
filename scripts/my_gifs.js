@@ -17,7 +17,6 @@ let currentPage = 1;
 document.querySelector(".fullsize-exit").addEventListener('click', refreshMyGifs);
 seeMoreBtn.addEventListener('click', seeMore);
 
-
 /**
  * @method seeMore
  * @description Draw more gifos (12 per time)
@@ -100,7 +99,6 @@ function refreshMyGifs() {
     htmlNode.innerHTML = "";
     startingPage = 0;
     downloadMyGifos();
-    //startingPage = currentPage - 1;
 };
 
 /**
@@ -159,9 +157,14 @@ const cardMarkup = ((url, user, title, index) => {
 function cardButtonAction(e) {
     const gifoIndex = e.currentTarget.getAttribute('data-index');
     const gifoInfo = getGifoInformation(gifoIndex);
+    const deleteFrom = e.currentTarget.getAttribute('data-delete');
     switch (e.currentTarget.getAttribute('data-type')) {
         case "delete":
-            removeFGifo(gifoInfo[3])
+            removeFGifo(gifoInfo[3]);
+            if (deleteFrom === "full-screen") {
+                refreshMyGifs();
+                toggleModal();
+            };
             break;
         case "download":
             downloadGifo(gifoInfo[0]);
