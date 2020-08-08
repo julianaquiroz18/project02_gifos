@@ -45,6 +45,7 @@ function seeMore() {
  * @method listenInputKeyEvent
  * @description Method to handle API request acording to input value 
  * and previous request status
+ * @param {object} e event information 
  */
 function listenInputKeyEvent(e) {
     const isEnterKey = e.keyCode === 13;
@@ -88,6 +89,7 @@ function requestSuggestions() {
 /**
  * @method listenSelectedSuggestion
  * @description This function is called when any suggestion is clicked
+ * @param {object} e event information 
  */
 function listenSelectedSuggestion(e) {
     currentPage = 0;
@@ -116,6 +118,7 @@ function listenSearchClick() {
 /**
  * @method updateSearchBarState
  * @description Update search bar UI according events
+ * @param {string} state
  */
 function updateSearchBarState(state) {
 

@@ -5,6 +5,9 @@ import { cardButtonAction, checkFavorite } from './card_buttons_actions.js';
  * @method makeGifosCards
  * @description Get gifos data and create cards
  * @param {array} gifosInfo
+ * @param {object} htmlNode
+ * @param {string} cardType
+ * @param {number} page
  */
 function makeGifosCards(gifosInfo, htmlNode, cardType, page = 0) {
     const gifosHTML = gifosInfo.map((gifo, index) => {
@@ -23,7 +26,12 @@ function makeGifosCards(gifosInfo, htmlNode, cardType, page = 0) {
 /**
  * @method cardMarkup
  * @description Card marking method
- * @param {string} 
+ * @param {string} url
+ * @param {string} user
+ * @param {string} title
+ * @param {string} cardType
+ * @param {number} index
+ * @param {boolean} isFavorite
  * @returns {string}
  */
 const cardMarkup = ((url, user, title, cardType, index, isFavorite) => {

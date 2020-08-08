@@ -34,7 +34,8 @@ function cardButtonAction(e) {
 /**
  * @method getGifoInformation
  * @description Get Gifo information 
- * @param {string}
+ * @param {string} gifoCardType
+ * @param {number} gifoIndex
  * @returns {array}
  */
 function getGifoInformation(gifoCardType, gifoIndex) {
@@ -81,7 +82,8 @@ function getGifoInformation(gifoCardType, gifoIndex) {
 /**
  * @method addfavoriteGifo
  * @description Add Gifo Information to an array in localStorage
- * @param {string} 
+ * @param {string} gifoCardType
+ * @param {number} gifoIndex
  */
 function addfavoriteGifo(gifoCardType, gifoIndex) {
     let favoriteGifosSelected = JSON.parse(localStorage.getItem(LOCAL_STORAGE_FAVORITES)) || [];
@@ -105,7 +107,7 @@ function addfavoriteGifo(gifoCardType, gifoIndex) {
 /**
  * @method removeFavoriteGifo
  * @description Remove Gifo Information from array in localStorage
- * @param {string} 
+ * @param {string} gifoID
  */
 function removeFavoriteGifo(gifoID) {
     let favoriteGifosSelected = JSON.parse(localStorage.getItem(LOCAL_STORAGE_FAVORITES)) || [];
@@ -119,6 +121,13 @@ function removeFavoriteGifo(gifoID) {
     localStorage.setItem(LOCAL_STORAGE_FAVORITES, JSON.stringify(favoriteGifosSelected));
 };
 
+/**
+ * @method toggleFav
+ * @description Hidde or unhidde favorite button
+ * @param {string} gifoCardType
+ * @param {number} gifoIndex
+ * @param {string} gifoID
+ */
 function toggleFav(gifoCardType, gifoIndex, gifoID) {
     let gifosWrap;
     if (gifoCardType === "trending_type") {
@@ -155,6 +164,8 @@ function toggleFav(gifoCardType, gifoIndex, gifoID) {
 /**
  * @method downloadGifo
  * @description Download Gifo
+ * @param {string} gifoCardType
+ * @param {string} downloadFrom
  * @param {array} gifoInfo
  */
 async function downloadGifo(gifoCardType, downloadFrom, gifoInfo) {
@@ -196,7 +207,9 @@ function toggleModal() {
 /**
  * @method maximizeButtonsConf
  * @description including data information and event listener to modal buttons
- * @param {string}
+ * @param {string} gifoCardType
+ * @param {number} gifoIndex
+ * @param {string} gifoID
  */
 function maximizeButtonsConf(gifoCardType, gifoIndex, gifoID) {
     document.querySelector(".fullsize-exit").addEventListener('click', toggleModal);
@@ -217,6 +230,13 @@ function maximizeButtonsConf(gifoCardType, gifoIndex, gifoID) {
     }
 };
 
+
+/**
+ * @method checkFavorite
+ * @description Check if gifo is favorite
+ * @param {string} gifoID
+ * @return {boolean}
+ */
 function checkFavorite(gifoID) {
     let isFavorite = false;
     let favoriteGifosSelected = JSON.parse(localStorage.getItem(LOCAL_STORAGE_FAVORITES)) || [];

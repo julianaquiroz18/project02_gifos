@@ -57,6 +57,9 @@ function downloadMyGifos() {
     downloadMyGifos.then(gifosData => {
             window.myGifosInfo = gifosData.data;
             drawMyGifs(gifosData.data);
+            if (currentPage > 1) {
+                startingPage = currentPage - 1
+            };
         })
         .catch((error) => { console.log(error) });
 };
@@ -64,6 +67,7 @@ function downloadMyGifos() {
 /**
  * @method drawMyGifs
  * @description Show gifos uploaded by user
+ * @param {object} gifosData
  */
 function drawMyGifs(gifosData) {
     const initialIndex = startingPage * 12;
@@ -99,8 +103,6 @@ function refreshMyGifs() {
     //startingPage = currentPage - 1;
 };
 
-
-
 /**
  * @method makeMyGifosCards
  * @description Get gifos data and create cards
@@ -123,7 +125,10 @@ function makeMyGifosCards(gifosInfo, htmlNode, page = 0) {
 /**
  * @method cardMarkup
  * @description Card marking method
- * @param {string} 
+ * @param {string} url
+ * @param {string} user
+ * @param {string} title
+ * @param {number} index
  * @returns {string}
  */
 const cardMarkup = ((url, user, title, index) => {
