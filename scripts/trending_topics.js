@@ -40,5 +40,5 @@ const topicsToLink = (array => {
  * @returns {string}
  */
 const topicsMarkup = (topic => {
-    return (`<li class="trending-topics__item"><a class="prueba" href="#search_bar">${capitalizeFirstLetter(topic)}</a></li>`);
+    return (`<li class="trending-topics__item"><a href="#search_bar">${capitalizeFirstLetter(topic)}</a></li>`);
 });

@@ -102,23 +102,6 @@
             left: vw(156, 1440);
             top: 18px;
         }
-        &__button {
-            display: inherit;
-            width: 54px;
-            height: 54px;
-            background-color: white;
-            border: 1px solid $purple;
-            border-radius: 50%;
-            position: absolute;
-            text-decoration: none;
-            top: 18px;
-            left: vw(1230, 1440);
-            color: $purple;
-            &:hover {
-                background-color: $purple;
-                color: white;
-            }
-        }
         .current-page-create-gifos {
             border: 1px solid $gray-line;
             background-color: $gray-line;
@@ -132,7 +115,8 @@
         font-size: 16px;
     }
     .navigation-bar__checkbox-menu,
-    .icon-burger {
+    .icon-burger,
+    .icon-close {
         display: none;
     }
     .navigation-bar__menu {
@@ -150,8 +134,34 @@
         margin: 35px 0 38px vw(45, 1440);
         color: $purple;
         text-transform: uppercase;
+        &::after {
+            display: none;
+        }
+        &:hover {
+            border-bottom: 2px $turquoise solid;
+        }
     }
     .current-page {
         color: $gray-line;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .navigation-bar__button {
+        display: inherit;
+        width: 54px;
+        height: 54px;
+        background-color: white;
+        border: 1px solid $purple;
+        border-radius: 50%;
+        position: absolute;
+        text-decoration: none;
+        top: 18px;
+        left: vw(1230, 1440);
+        color: $purple;
+        &:hover {
+            background-color: $purple;
+            color: white;
+        }
     }
 }
