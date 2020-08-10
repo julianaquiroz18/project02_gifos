@@ -1092,7 +1092,7 @@ button {
     display: inherit;
   }
   .create-gifos_main {
-    height: calc(100vh - 95px - 105px - 30px);
+    height: calc(100vh - 90px - 129px - 30px);
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1111,7 +1111,6 @@ button {
     min-height: 550px;
   }
   .screen {
-    margin-top: 4px;
     width: 688px;
     min-height: 390px;
     border: 1px solid #572EE5;
