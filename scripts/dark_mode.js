@@ -7,7 +7,7 @@ const lightThemeLink = document.querySelector(".day-mode");
 const logo = document.querySelector(".navigation-bar__logo");
 const camera = document.querySelector(".camera");
 const film = document.querySelector(".film");
-//localStorage.setItem(LOCAL_STORAGE_IS_DARK, null);
+
 /**
  * Events
  */

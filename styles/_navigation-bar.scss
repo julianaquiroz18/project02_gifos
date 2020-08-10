@@ -50,7 +50,7 @@
     background-color: $purple+E6;
     transform-origin: 100% 0%;
     transform: rotateY(90deg);
-    transition: all 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+    transition: all 0.3s cubic-bezier(0.77, 0.2, 0.05, 1.0);
     box-sizing: border-box;
     padding-top: 30px;
     z-index: 5;
@@ -120,6 +120,7 @@
         display: none;
     }
     .navigation-bar__menu {
+        transition: all 0.1s cubic-bezier(0.77, 0.2, 0.05, 1.0);
         display: flex;
         justify-content: flex-end;
         top: inherit;
