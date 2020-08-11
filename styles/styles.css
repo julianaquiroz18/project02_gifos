@@ -135,7 +135,8 @@ button {
   height: 32vw;
 }
 
-.gifos-container-card__img {
+.gifos-container-card__img,
+.gifos-container-card .my-gifos__gifos-container-card__img {
   width: 100%;
   height: 100%;
 }
@@ -181,6 +182,7 @@ button {
     height: 13.88889vw;
   }
   .gifos-container-card__img,
+  .gifos-container-card .my-gifos__gifos-container-card__img,
   .gifos-container-card .overlay {
     width: 100%;
     height: 100%;
@@ -224,7 +226,8 @@ button {
   .gifos-container-card:hover .overlay {
     z-index: 1;
   }
-  .card-button {
+  .card-button,
+  .my-gifos__card-button {
     background-color: white;
     width: 32px;
     height: 32px;
@@ -233,7 +236,8 @@ button {
     font-size: 18px;
     outline: none;
   }
-  .card-button:hover {
+  .card-button:hover,
+  .my-gifos__card-button:hover {
     opacity: 100%;
   }
   .card__user {
@@ -455,7 +459,7 @@ button {
 }
 
 .navigation-bar__checkbox-menu:checked ~ .icon-close {
-  display: block;
+  display: initial;
 }
 
 @media screen and (min-width: 768px) {
@@ -484,8 +488,10 @@ button {
     font-size: 16px;
   }
   .navigation-bar__checkbox-menu,
-  .icon-burger,
-  .icon-close {
+  .icon-burger {
+    display: none;
+  }
+  .navigation-bar__checkbox-menu:checked ~ .icon-close {
     display: none;
   }
   .navigation-bar__menu {
@@ -844,7 +850,9 @@ button {
   .trending-box__button {
     display: inherit;
     position: absolute;
-    top: 302px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
     background-color: #F3F5F8;
     border: #572EE5 solid 1px;
     width: 40px;
@@ -864,7 +872,7 @@ button {
     right: 6.38889vw;
   }
   .gifos-carrousel {
-    height: 275px;
+    height: 19.09722vw;
     padding: 52px 0 182px;
     width: 78.26389vw;
     margin: auto;
@@ -951,7 +959,8 @@ button {
   }
 }
 
-.modal {
+.modal,
+.my-gifs__modal {
   position: fixed;
   top: 0;
   width: 100%;
@@ -982,17 +991,20 @@ button {
           align-items: center;
 }
 
-.fullsize-exit {
+.fullsize-exit,
+.fullsize .my-gifos__fullsize-exit {
   font-size: 14px;
   width: 14px;
   background-color: rgba(255, 255, 255, 0.2);
+  color: #572EE5;
   cursor: pointer;
   position: relative;
   left: 38.66667vw;
   outline: none;
 }
 
-.fullsize-gifo {
+.fullsize-gifo,
+.fullsize .my-gifos__fullsize-gifo {
   width: 84.8vw;
   height: auto;
   padding: 69px 0 14px;
@@ -1022,20 +1034,23 @@ button {
   margin-right: 20px;
 }
 
-.fullsize-user {
+.fullsize-user,
+.fullsize .my-gifos__fullsize-user {
   color: black;
   font-size: 15px;
   line-height: 18px;
 }
 
-.fullsize-title {
+.fullsize-title,
+.fullsize .my-gifos__fullsize-title {
   color: black;
   font-family: “ProximaNova-Bold”;
   font-size: 16px;
   line-height: 20px;
 }
 
-.fullsize-btn-wrap {
+.fullsize-btn-wrap,
+.fullsize .my-gifos__fullsize-btn-wrap {
   width: 93px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1045,7 +1060,8 @@ button {
           justify-content: space-between;
 }
 
-.fullsize-button {
+.fullsize-button,
+.fullsize .my-gifs__fullsize-button {
   background-color: rgba(255, 255, 255, 0.2);
   width: 36px;
   height: 36px;
@@ -1056,18 +1072,21 @@ button {
   outline: none;
 }
 
-.fullsize-button:hover {
+.fullsize-button:hover,
+.fullsize .my-gifs__fullsize-button:hover {
   opacity: 100%;
   background-color: white;
 }
 
 @media screen and (min-width: 768px) {
-  .fullsize-exit {
+  .fullsize-exit,
+  .fullsize .my-gifos__fullsize-exit {
     font-size: 15px;
     width: 15px;
     left: 31.25vw;
   }
-  .fullsize-gifo {
+  .fullsize-gifo,
+  .fullsize .my-gifos__fullsize-gifo {
     width: 65.10417vw;
   }
   .fullsize-footer {
@@ -1076,10 +1095,12 @@ button {
 }
 
 @media screen and (min-width: 1024px) {
-  .fullsize-exit {
+  .fullsize-exit,
+  .fullsize .my-gifos__fullsize-exit {
     left: 26.875vw;
   }
-  .fullsize-gifo {
+  .fullsize-gifo,
+  .fullsize .my-gifos__fullsize-gifo {
     width: 48.26389vw;
     height: 385px;
   }
@@ -1326,6 +1347,9 @@ button {
         -ms-flex-pack: center;
             justify-content: center;
     left: -60%;
+  }
+  .light {
+    margin-top: 5px;
   }
   .film {
     right: -65%;

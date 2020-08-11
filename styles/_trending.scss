@@ -72,7 +72,8 @@
         &__button {
             display: inherit;
             position: absolute;
-            top: 302px;
+            top: 50%;
+            transform: translateY(-50%);
             background-color: $white-light;
             border: $purple solid 1px;
             width: 40px;
@@ -93,7 +94,7 @@
         }
     }
     .gifos-carrousel {
-        height: 275px;
+        height: vw(275, 1440);
         padding: 52px 0 182px;
         width: vw(1127, 1440);
         margin: auto;

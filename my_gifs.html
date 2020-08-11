@@ -48,6 +48,22 @@
 
             </div>
         </section>
+        <div class="my-gifs__modal hidden">
+            <div class="fullsize">
+                <button class="my-gifos__fullsize-exit"><i class="icon-button-close"></i></button>
+                <img class="my-gifos__fullsize-gifo" src="" alt="Gifo Fullsize">
+                <div class="fullsize-footer">
+                    <div class="fullsize-info-wrap">
+                        <p class="my-gifos__fullsize-user">User</p>
+                        <p class="my-gifos__fullsize-title">title</p>
+                    </div>
+                    <div class="my-gifos__fullsize-btn-wrap my-gifs_modal_btn-wrap">
+                        <button class="my-gifs__fullsize-button delete-fullsize" data-typeMyGifos="delete" data-delete="full-screen" type="button"><i class="icon-icon_trash"></i></i></button>
+                        <button class="my-gifs__fullsize-button" data-download="full-screen" data-typeMyGifos="download" type="button"><i class="icon-icon-download"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="modal hidden">
             <div class="fullsize">
                 <button class="fullsize-exit"><i class="icon-button-close"></i></button>
@@ -57,8 +73,9 @@
                         <p class="fullsize-user">User</p>
                         <p class="fullsize-title">title</p>
                     </div>
-                    <div class="fullsize-btn-wrap my-gifs_modal_btn-wrap">
-                        <button class="fullsize-button delete-fullsize" data-type="delete" data-delete="full-screen" type="button"><i class="icon-icon_trash"></i></i></button>
+                    <div class="fullsize-btn-wrap">
+                        <button class="fullsize-button fav-hover" data-type="add-favorite" type="button"><i class="icon-icon-fav-hover"></i></button>
+                        <button class="fullsize-button fav-active hidden" data-type="remove-favorite" type="button"><i class="icon-icon-fav-active"></i></button>
                         <button class="fullsize-button" data-download="full-screen" data-type="download" type="button"><i class="icon-icon-download"></i></button>
                     </div>
                 </div>

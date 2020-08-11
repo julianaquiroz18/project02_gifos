@@ -86,7 +86,7 @@
 }
 
 .navigation-bar__checkbox-menu:checked~.icon-close {
-    display: block;
+    display: initial;
 }
 
 @media screen and (min-width: 768px) {
@@ -115,8 +115,10 @@
         font-size: 16px;
     }
     .navigation-bar__checkbox-menu,
-    .icon-burger,
-    .icon-close {
+    .icon-burger {
+        display: none;
+    }
+    .navigation-bar__checkbox-menu:checked~.icon-close {
         display: none;
     }
     .navigation-bar__menu {

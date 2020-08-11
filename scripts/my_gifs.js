@@ -14,7 +14,7 @@ let currentPage = 1;
 /**
  * Events
  */
-document.querySelector(".fullsize-exit").addEventListener('click', refreshMyGifs);
+document.querySelector(".my-gifos__fullsize-exit").addEventListener('click', refreshMyGifs);
 seeMoreBtn.addEventListener('click', seeMore);
 
 /**
@@ -116,8 +116,8 @@ function makeMyGifosCards(gifosInfo, htmlNode, page = 0) {
         return cardMarkup(gifoURL, gifoUser, gifoTitle, index + (page * 12));
     });
     htmlNode.innerHTML += gifosHTML.join("\n");
-    htmlNode.querySelectorAll('.card-button').forEach((button) => button.addEventListener('click', cardButtonAction));
-    htmlNode.querySelectorAll('.gifos-container-card__img').forEach((image) => image.addEventListener('click', cardButtonAction));
+    htmlNode.querySelectorAll('.my-gifos__card-button').forEach((button) => button.addEventListener('click', cardButtonAction));
+    htmlNode.querySelectorAll('.my-gifos__gifos-container-card__img').forEach((image) => image.addEventListener('click', cardButtonAction));
 };
 
 /**
@@ -132,16 +132,16 @@ function makeMyGifosCards(gifosInfo, htmlNode, page = 0) {
 const cardMarkup = ((url, user, title, index) => {
     return (
         `<div class="gifos-container-card">
-        <img class="gifos-container-card__img" src="${url}" alt="Gifo" data-type="maximize" data-index="${index}">
+        <img class="my-gifos__gifos-container-card__img" src="${url}" alt="Gifo" data-typeMyGifos="maximize" data-indexMyGifos="${index}">
         <div class="overlay">
             <div class="gifos-container-card__buttons">
-                <button class="card-button delete" data-type="delete" data-index="${index}" type="button"><i class="icon-icon_trash"></i></i></button>
-                <button class="card-button" data-type="download" data-index="${index}" type="button"><i class="icon-icon-download"></i></button>
-                <button class="card-button maximize" data-type="maximize" data-index="${index}" type="button"><i class="icon-icon-max"></i></button>
+                <button class="my-gifos__card-button delete" data-typeMyGifos="delete" data-indexMyGifos="${index}" type="button"><i class="icon-icon_trash"></i></i></button>
+                <button class="my-gifos__card-button" data-typeMyGifos="download" data-indexMyGifos="${index}" type="button"><i class="icon-icon-download"></i></button>
+                <button class="my-gifos__card-button maximize" data-typeMyGifos="maximize" data-indexMyGifos="${index}" type="button"><i class="icon-icon-max"></i></button>
             </div>
             <div class="gifos-container-card__info">
-                <p class="card__user">${user}</p>
-                <p class="card__title">${title}</p>
+                <p class="my-gifos__card__user">${user}</p>
+                <p class="my-gifos__card__title">${title}</p>
             </div>
         </div>
     </div>`
@@ -155,10 +155,10 @@ const cardMarkup = ((url, user, title, index) => {
  * @param {object} e event information 
  */
 function cardButtonAction(e) {
-    const gifoIndex = e.currentTarget.getAttribute('data-index');
+    const gifoIndex = e.currentTarget.getAttribute('data-indexMyGifos');
     const gifoInfo = getGifoInformation(gifoIndex);
     const deleteFrom = e.currentTarget.getAttribute('data-delete');
-    switch (e.currentTarget.getAttribute('data-type')) {
+    switch (e.currentTarget.getAttribute('data-typeMyGifos')) {
         case "delete":
             removeFGifo(gifoInfo[3]);
             if (deleteFrom === "full-screen") {
@@ -233,14 +233,14 @@ async function downloadGifo(gifoURL) {
  * @param {array} gifoInfo
  */
 function maximizeGifo(gifoInfo) {
-    document.querySelector(".fullsize-gifo").src = gifoInfo[0];
-    document.querySelector(".fullsize-user").textContent = gifoInfo[1];
-    document.querySelector(".fullsize-title").textContent = gifoInfo[2];
+    document.querySelector(".my-gifos__fullsize-gifo").src = gifoInfo[0];
+    document.querySelector(".my-gifos__fullsize-user").textContent = gifoInfo[1];
+    document.querySelector(".my-gifos__fullsize-title").textContent = gifoInfo[2];
     toggleModal();
 };
 
 function toggleModal() {
-    document.querySelector(".modal").classList.toggle("hidden");
+    document.querySelector(".my-gifs__modal").classList.toggle("hidden");
 };
 
 /**
@@ -249,10 +249,10 @@ function toggleModal() {
  * @param {number} gifoIndex
  */
 function maximizeButtonsConf(gifoIndex) {
-    document.querySelector(".fullsize-exit").addEventListener('click', toggleModal);
-    const fullsizeButtons = document.querySelectorAll(".fullsize-button");
+    document.querySelector(".my-gifos__fullsize-exit").addEventListener('click', toggleModal);
+    const fullsizeButtons = document.querySelectorAll(".my-gifs__fullsize-button");
     fullsizeButtons.forEach(button => {
-        button.setAttribute("data-index", gifoIndex);
+        button.setAttribute("data-indexMyGifos", gifoIndex);
         button.addEventListener('click', cardButtonAction);
     });
 };

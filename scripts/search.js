@@ -194,10 +194,12 @@ function requestGifos(page = 0) {
         }
         seeMoreBtn.classList.remove("hidden");
         const htmlNode = document.querySelector(".gifos-wrapper");
-        window.searchedGifosInfo = [...window.searchedGifosInfo || [], ...response.data];
         if (page === 0) {
             htmlNode.innerHTML = "";
-        };
+            window.searchedGifosInfo = response.data;
+        } else {
+            window.searchedGifosInfo = [...window.searchedGifosInfo || [], ...response.data];
+        }
         makeGifosCards(response.data, htmlNode, "search_type", page);
 
     }).catch((error) => { console.log(error) });
